@@ -70,8 +70,7 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic
   {
     super.viewDidLoad()
     doSomething()
-      
-      view.backgroundColor = UIColor.gray
+    view.backgroundColor = ColorStyle.bgColor.load()
   }
   
   // MARK: Do something
