@@ -39,15 +39,13 @@ final class TabBarController: UITabBarController
     private func addControllers() {
         let homeVC = DashboardViewController()
         let homeView = MainNavigation(rootViewController: DashboardConfigurator.configure(homeVC))
-        homeView.tabBarItem = UITabBarItem()
-        homeView.tabBarItem.title = "Home"
-        homeView.tabBarItem.image = UIImage.checkmark
-        
+        homeView.tabBarItem = UITabBarItem(title: "Əsas", image: AppAssets.main.load(), tag: 0)
+       
+
         let internetVC = DashboardViewController()
         let internetView = MainNavigation(rootViewController: DashboardConfigurator.configure(internetVC))
-        internetView.tabBarItem = UITabBarItem()
-        internetView.tabBarItem.title = "Internet"
-        internetView.tabBarItem.image = UIImage.strokedCheckmark
+        internetView.tabBarItem = UITabBarItem(title: "İnternet", image: AppAssets.internet.load(), tag: 1)
+        
         
         // Home
         let dashboardVC = DashboardViewController()
@@ -62,18 +60,14 @@ final class TabBarController: UITabBarController
         
         let supportVC = DashboardViewController()
         let supportView = MainNavigation(rootViewController: DashboardConfigurator.configure(supportVC))
-        supportView.tabBarItem = UITabBarItem()
-        supportView.tabBarItem.title = "Support"
-        supportView.tabBarItem.image = UIImage.strokedCheckmark
+        supportView.tabBarItem = UITabBarItem(title: "Dəstək", image: AppAssets.support.load(), tag: 2)
         
         
         let accountVC = DashboardViewController()
         let accountView = MainNavigation(rootViewController: DashboardConfigurator.configure(accountVC))
-        accountView.tabBarItem = UITabBarItem()
-        accountView.tabBarItem.title = "Account"
-        accountView.tabBarItem.image = UIImage.remove
+        accountView.tabBarItem = UITabBarItem(title: "Hesabım", image: AppAssets.account.load(), tag: 3)
         
-        let controllers = [internetView, homeView, dashboardView, supportView, accountView]
+        let controllers = [homeView, internetView, dashboardView, supportView, accountView]
         self.viewControllers = controllers
     }
     
@@ -86,7 +80,7 @@ final class TabBarController: UITabBarController
 //        self.tabBar.isTranslucent = false
 //        self.tabBar.barTintColor = .white
 //        self.tabBar.backgroundColor = .clear
-        self.tabBar.tintColor = .green
+        self.tabBar.tintColor = ColorStyle.mainColor.load()
         self.tabBar.unselectedItemTintColor = .gray
     }
     
@@ -126,6 +120,8 @@ final class TabBarController: UITabBarController
             shape.fillColor = UIColor.systemPink.cgColor
             tabBar.layer.insertSublayer(shape, at: 0)
         }
+    
+    
         // NOTE: check width and height
     func getPathForTabBar() -> UIBezierPath {
             let frameWidth = self.tabBar.bounds.width
