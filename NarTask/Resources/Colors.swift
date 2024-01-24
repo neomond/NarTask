@@ -8,7 +8,6 @@
 import UIKit
 
 public enum ColorStyle: String, CaseIterable {
-    
     case mainColor = "MainColor"
     case labelColor = "LabelColor"
     case black =  "BlackColor"

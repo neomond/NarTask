@@ -66,11 +66,12 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic
   
   // MARK: View lifecycle
   
-  override func viewDidLoad()
-  {
+  override func viewDidLoad() {
     super.viewDidLoad()
     doSomething()
-    view.backgroundColor = ColorStyle.bgColor.load()
+    view.backgroundColor = ColorStyle.mainColor.load()
+      let dbView = DashboardView(frame: CGRect(x: 0, y: (view.bounds.height * 0.155), width: view.bounds.width, height: view.bounds.height * 1))
+         view.addSubview(dbView)
   }
   
   // MARK: Do something
