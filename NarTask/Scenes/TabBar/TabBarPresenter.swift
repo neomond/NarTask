@@ -26,6 +26,6 @@ class TabBarPresenter: TabBarPresentationLogic
   func presentSomething(response: TabBar.Something.Response)
   {
     let viewModel = TabBar.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+//    viewController?.displaySomething(viewModel: viewModel)
   }
 }

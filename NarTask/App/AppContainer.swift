@@ -6,3 +6,16 @@
 //
 
 import Foundation
+//import AzercellUIkit
+//import AzercellNetworkKit
+
+let App = AppContainer()
+
+final class AppContainer {
+    
+    let router = AppRouter()
+    
+//    let service = Service()
+//
+//    let theme = AppTheme()
+}

@@ -24,7 +24,7 @@ protocol TabBarDataPassing
 
 class TabBarRouter: NSObject, TabBarRoutingLogic, TabBarDataPassing
 {
-  weak var viewController: TabBarViewController?
+  weak var viewController: TabBarController?
   var dataStore: TabBarDataStore?
   
   // MARK: Routing

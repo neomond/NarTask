@@ -12,7 +12,7 @@
 
 import UIKit
 
-protocol DashboardDisplayLogic: class
+protocol DashboardDisplayLogic: AnyObject
 {
   func displaySomething(viewModel: Dashboard.Something.ViewModel)
 }
@@ -70,6 +70,8 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic
   {
     super.viewDidLoad()
     doSomething()
+      
+      view.backgroundColor = UIColor.gray
   }
   
   // MARK: Do something
