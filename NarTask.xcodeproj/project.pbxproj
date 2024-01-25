@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A8023252B61B5CE00329D08 /* ProductCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8023242B61B5CE00329D08 /* ProductCardCell.swift */; };
+		7A8023272B61BB6D00329D08 /* ProductCardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8023262B61BB6D00329D08 /* ProductCardContainerView.swift */; };
 		7A81C0802B5FC098009947E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81C07F2B5FC098009947E0 /* AppDelegate.swift */; };
 		7A81C0842B5FC098009947E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81C0832B5FC098009947E0 /* ViewController.swift */; };
 		7A81C08C2B5FC09A009947E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A81C08A2B5FC09A009947E0 /* LaunchScreen.storyboard */; };
@@ -38,9 +40,12 @@
 		7AD2B5812B60DFB00057D956 /* AppAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2B5802B60DFB00057D956 /* AppAssets.swift */; };
 		7AD2B5832B60E7400057D956 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2B5822B60E7400057D956 /* Colors.swift */; };
 		7AD2B5852B60E7CD0057D956 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2B5842B60E7CD0057D956 /* AppTheme.swift */; };
+		7AF958EB2B6119F50078D8FA /* StoryCircleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF958EA2B6119F50078D8FA /* StoryCircleCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7A8023242B61B5CE00329D08 /* ProductCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardCell.swift; sourceTree = "<group>"; };
+		7A8023262B61BB6D00329D08 /* ProductCardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardContainerView.swift; sourceTree = "<group>"; };
 		7A81C07C2B5FC098009947E0 /* NarTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NarTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A81C07F2B5FC098009947E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A81C0832B5FC098009947E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +77,7 @@
 		7AD2B5802B60DFB00057D956 /* AppAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssets.swift; sourceTree = "<group>"; };
 		7AD2B5822B60E7400057D956 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		7AD2B5842B60E7CD0057D956 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		7AF958EA2B6119F50078D8FA /* StoryCircleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCircleCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +230,7 @@
 		7A81C0AE2B5FCC5B009947E0 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				7AF958EC2B6131CC0078D8FA /* Views */,
 				7A81C0AF2B5FCC6E009947E0 /* Cells */,
 				7A81C0B02B5FCCA3009947E0 /* DashboardPresenter.swift */,
 				7A81C0B12B5FCCA3009947E0 /* DashboardWorker.swift */,
@@ -240,8 +247,18 @@
 		7A81C0AF2B5FCC6E009947E0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				7AF958EA2B6119F50078D8FA /* StoryCircleCollectionViewCell.swift */,
+				7A8023242B61B5CE00329D08 /* ProductCardCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7AF958EC2B6131CC0078D8FA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7A8023262B61BB6D00329D08 /* ProductCardContainerView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AF958EB2B6119F50078D8FA /* StoryCircleCollectionViewCell.swift in Sources */,
 				7A81C0A72B5FC9E2009947E0 /* TabBarRouter.swift in Sources */,
 				7A81C0AD2B5FCA1F009947E0 /* TabBarView.swift in Sources */,
 				7A81C0A52B5FC9E2009947E0 /* TabBarPresenter.swift in Sources */,
@@ -335,12 +353,14 @@
 				7A81C0802B5FC098009947E0 /* AppDelegate.swift in Sources */,
 				7AD2B5852B60E7CD0057D956 /* AppTheme.swift in Sources */,
 				7A81C0B72B5FCCA3009947E0 /* DashboardWorker.swift in Sources */,
+				7A8023252B61B5CE00329D08 /* ProductCardCell.swift in Sources */,
 				7A81C0B92B5FCCA3009947E0 /* DashboardModels.swift in Sources */,
 				7A81C0A82B5FC9E2009947E0 /* TabBarModels.swift in Sources */,
 				7A81C0C12B5FCD69009947E0 /* ThemableView.swift in Sources */,
 				7A81C0BB2B5FCCA3009947E0 /* DashboardInteractor.swift in Sources */,
 				7A81C0AB2B5FCA0C009947E0 /* TabBarConfigurator.swift in Sources */,
 				7A81C0BF2B5FCCDC009947E0 /* DashboardConfigurator.swift in Sources */,
+				7A8023272B61BB6D00329D08 /* ProductCardContainerView.swift in Sources */,
 				7A81C0BD2B5FCCC2009947E0 /* DashboardView.swift in Sources */,
 				7A81C0A62B5FC9E2009947E0 /* TabBarWorker.swift in Sources */,
 				7AD2B5832B60E7400057D956 /* Colors.swift in Sources */,

@@ -11,17 +11,17 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol DashboardDisplayLogic: AnyObject
 {
   func displaySomething(viewModel: Dashboard.Something.ViewModel)
 }
 
-class DashboardViewController: UIViewController, DashboardDisplayLogic
-{
+class DashboardViewController: UIViewController, DashboardDisplayLogic {
   var interactor: DashboardBusinessLogic?
   var router: (NSObjectProtocol & DashboardRoutingLogic & DashboardDataPassing)?
-
+  var dashboardView: DashboardView!
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -35,7 +35,28 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic
     super.init(coder: aDecoder)
     setup()
   }
+    
+    let collectionView: UICollectionView = {
+        let layout  = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 80, height: 80)
+        layout.sectionInset = .init(top: 24, left: 16, bottom: 8, right: 8)
+        layout.minimumInteritemSpacing = 8
+        layout.minimumLineSpacing = 8
+        let collectiontView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectiontView.translatesAutoresizingMaskIntoConstraints = false
+        collectiontView.backgroundColor = .clear
+        collectiontView.showsHorizontalScrollIndicator = false
+        return collectiontView
+    }()
   
+    fileprivate func addConstraints() {
+            collectionView.snp.makeConstraints { make in
+                make.height.equalTo(96)
+                make.width.equalToSuperview()
+            }
+        }
+    
   // MARK: Setup
   
   private func setup()
@@ -54,8 +75,7 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic
   
   // MARK: Routing
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let scene = segue.identifier {
       let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
       if let router = router, router.responds(to: selector) {
@@ -66,12 +86,29 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic
   
   // MARK: View lifecycle
   
+ override func loadView() {
+            super.loadView()
+            dashboardView = DashboardView(frame: UIScreen.main.bounds)
+            view = dashboardView
+        }
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     doSomething()
     view.backgroundColor = ColorStyle.mainColor.load()
       let dbView = DashboardView(frame: CGRect(x: 0, y: (view.bounds.height * 0.155), width: view.bounds.width, height: view.bounds.height * 1))
-         view.addSubview(dbView)
+    view.addSubview(dbView)
+      collectionView.dataSource = self
+      collectionView.delegate = self
+      collectionView.register(StoryCircleCell.self, forCellWithReuseIdentifier: StoryCircleCell.reuseIdentifier)
+      dbView.addSubview(collectionView)
+      
+  
+      
+      
+      collectionView.register(ProductCardCell.self, forCellWithReuseIdentifier: ProductCardCell.reuseIdentifier)
+
+      addConstraints()
   }
   
   // MARK: Do something
@@ -84,8 +121,22 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic
     interactor?.doSomething(request: request)
   }
   
-  func displaySomething(viewModel: Dashboard.Something.ViewModel)
-  {
+  func displaySomething(viewModel: Dashboard.Something.ViewModel) {
     //nameTextField.text = viewModel.name
   }
+}
+
+extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCircleCell.reuseIdentifier, for: indexPath) as? StoryCircleCell else {
+            return UICollectionViewCell()
+        }
+        cell.imageView.image = UIImage(named: "StoryImage")
+        return cell
+    }
+    
 }
