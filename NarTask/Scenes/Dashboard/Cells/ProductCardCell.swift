@@ -14,11 +14,17 @@ class ProductCardCell: UICollectionViewCell {
     let titleLabel = UILabel()
     let imageView = UIImageView()
     
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
+        contentView.backgroundColor = .clear
         self.backgroundColor = .white
+        self.layer.cornerRadius = 16
+        self.layer.borderWidth = 1.0
+        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.masksToBounds = true
     }
     
     required init?(coder: NSCoder) {
@@ -38,7 +44,8 @@ class ProductCardCell: UICollectionViewCell {
         imageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().inset(8)
-            make.height.width.equalTo(40) 
+            make.height.width.equalTo(60)
+            make.right.lessThanOrEqualToSuperview().inset(8)
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -47,7 +54,7 @@ class ProductCardCell: UICollectionViewCell {
             make.right.equalToSuperview().inset(8)
         }
         
-    }
+    }                   
     
     func configure(with title: String, image: UIImage) {
         titleLabel.text = title
