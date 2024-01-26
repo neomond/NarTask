@@ -13,127 +13,89 @@
 import UIKit
 import SnapKit
 
-protocol DashboardDisplayLogic: AnyObject
-{
-  func displaySomething(viewModel: Dashboard.Something.ViewModel)
+protocol DashboardDisplayLogic: AnyObject {
+    func displaySomething(viewModel: Dashboard.Something.ViewModel)
 }
 
 class DashboardViewController: UIViewController, DashboardDisplayLogic {
-  var interactor: DashboardBusinessLogic?
-  var router: (NSObjectProtocol & DashboardRoutingLogic & DashboardDataPassing)?
-  var dashboardView: DashboardView!
-  // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
+    var interactor: DashboardBusinessLogic?
+    var router: (NSObjectProtocol & DashboardRoutingLogic & DashboardDataPassing)?
     
-    let collectionView: UICollectionView = {
-        let layout  = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 80, height: 80)
-        layout.sectionInset = .init(top: 24, left: 16, bottom: 8, right: 8)
-        layout.minimumInteritemSpacing = 8
-        layout.minimumLineSpacing = 8
-        let collectiontView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectiontView.translatesAutoresizingMaskIntoConstraints = false
-        collectiontView.backgroundColor = .clear
-        collectiontView.showsHorizontalScrollIndicator = false
-        return collectiontView
+    lazy var mainView: DashboardView = {
+        let view = DashboardView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
-  
-    fileprivate func addConstraints() {
-            collectionView.snp.makeConstraints { make in
-                make.height.equalTo(96)
-                make.width.equalToSuperview()
-            }
-        }
     
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = DashboardInteractor()
-    let presenter = DashboardPresenter()
-    let router = DashboardRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+    override func loadView() {
+        super.loadView()
+        view = UIView()
+        view.addSubview(mainView)
+        
+        mainView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
-  }
-  
-  // MARK: View lifecycle
-  
- override func loadView() {
-            super.loadView()
-            dashboardView = DashboardView(frame: UIScreen.main.bounds)
-            view = dashboardView
-        }
     
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    doSomething()
-    view.backgroundColor = ColorStyle.mainColor.load()
-      let dbView = DashboardView(frame: CGRect(x: 0, y: (view.bounds.height * 0.155), width: view.bounds.width, height: view.bounds.height * 1))
-    view.addSubview(dbView)
-      collectionView.dataSource = self
-      collectionView.delegate = self
-      collectionView.register(StoryCircleCell.self, forCellWithReuseIdentifier: StoryCircleCell.reuseIdentifier)
-      dbView.addSubview(collectionView)
-      
-  
-      
-      
-      collectionView.register(ProductCardCell.self, forCellWithReuseIdentifier: ProductCardCell.reuseIdentifier)
-
-      addConstraints()
-  }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = Dashboard.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: Dashboard.Something.ViewModel) {
-    //nameTextField.text = viewModel.name
-  }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mainView.collectionView.delegate = self
+        mainView.collectionView.dataSource = self
+        load()
+        
+        //        self.dashboardView.collectionView.delegate = self
+        //        self.dashboardView.serv.delegate = self
+        //
+        //        self.dashboardView.collectionView.dataSource = self
+        //        self.dashboardView.services.dataSource = self
+        
+        //        view.backgroundColor = ColorStyle.mainColor.load()
+        //        let dbView = DashboardView(frame: CGRect(x: 0, y: (view.bounds.height * 0.155), width: view.bounds.width, height: view.bounds.height * 1))
+        //        view.addSubview(dbView)
+        //        collectionView.register(StoryCircleCel/*l.self, forCellWithReuseIdentifier: StoryCircleCell.reuseIdentifier)*/
+        //        dbView.addSubview(collectionView)
+        
+        
+        //        collectionView.register(ProductCardCell.self, forCellWithReuseIdentifier: ProductCardCell.reuseIdentifier)
+        
+        //        addConstraints()
+    }
+    
+    // MARK: Do something
+    
+    //@IBOutlet weak var nameTextField: UITextField!
+    
+    func load() {
+        let request = Dashboard.Something.Request()
+        interactor?.doSomething(request: request)
+    }
+    
+    func displaySomething(viewModel: Dashboard.Something.ViewModel) {
+        //nameTextField.text = viewModel.name
+    }
 }
 
 extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
+        //        return self.customData.count
+        
+        //        if collectionView == dashboardView.collectionView {
+        //            return
+        //        } else {
+        //
+        //        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCircleCell.reuseIdentifier, for: indexPath) as? StoryCircleCell else {
             return UICollectionViewCell()
         }
+        
+        //        let item = self.customData[indexPath.row]
+        //        cell.configure(data: item)
+        //        cell.data = item
         cell.imageView.image = UIImage(named: "StoryImage")
         return cell
     }

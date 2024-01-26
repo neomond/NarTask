@@ -54,5 +54,9 @@ class StoryCircleCell: UICollectionViewCell {
                 make.center.equalToSuperview()
             }
     }
+    
+//    func configure(data: CustomData) {
+//        self.imageview.image = UIImage(named: data.image)
+//    }
 }
 

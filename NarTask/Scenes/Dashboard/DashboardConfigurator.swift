@@ -16,7 +16,7 @@ final class DashboardConfigurator {
         let presenter = DashboardPresenter()
         let router = DashboardRouter()
         
-//        viewController.mainView = view
+        viewController.mainView = view
         viewController.interactor = interactor
         viewController.router = router
         
