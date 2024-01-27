@@ -8,35 +8,82 @@
 import UIKit
 import SnapKit
 
+enum ProductType: String, CaseIterable {
+    case tariff = "Tarifler"
+    case package = "Paketler"
+}
+extension ProductType {
+    func getTitle() -> String {
+        return self.rawValue
+    }
+    func getImage() -> UIImage? {
+        switch self {
+        case .tariff:
+            AppAssets.tarifler.load()
+        case .package:
+            AppAssets.paketler.load()
+        }
+    }
+}
 class ProductCardContainerView: UIView {
     
-    let productCard1 = ProductCardCell(frame: .zero)
-    let productCard2 = ProductCardCell(frame: .zero)
+    private var productCardCells: [ProductCardCell] = []
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Məhsullar"
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = .black
+        return label
+    }()
+    
+    private lazy var contentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .fill
+        return stackView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupProductCards()
+        self.setupProductCards()
+        self.addSubviews()
+        self.addConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupProductCards() {
-        addSubview(productCard1)
-        addSubview(productCard2)
-        
-        productCard1.configure(with: "Tariflər", image: UIImage(named: "tarifler") ?? UIImage())
-        productCard2.configure(with: "Paketlər", image: UIImage(named: "paketler") ?? UIImage())
-        
-        productCard1.snp.makeConstraints { make in
-            make.top.left.bottom.equalToSuperview()
-            make.right.equalTo(self.snp.centerX).offset(-8)
+    private func addSubviews() {
+        addSubview(titleLabel)
+        productCardCells.forEach { productCardCell in
+            contentStackView.addArrangedSubview(productCardCell)
         }
+        addSubview(contentStackView)
         
-        productCard2.snp.makeConstraints { make in
-            make.top.right.bottom.equalToSuperview()
-            make.left.equalTo(self.snp.centerX).offset(8)
+    }
+    
+    private func setupProductCards() {
+        ProductType.allCases.forEach { productType in
+            self.productCardCells.append(ProductCardCell(productType: productType))
         }
     }
+    
+    private func addConstraints() {
+        titleLabel.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview().inset(16)
+        }
+        contentStackView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(16)
+            make.horizontalEdges.equalToSuperview().inset(16)
+            make.height.equalTo(80)
+        }
+        
+        
+    }
+    
 }

@@ -39,31 +39,11 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView.collectionView.delegate = self
-        mainView.collectionView.dataSource = self
+        mainView.storiesCollectionView.delegate = self
+        mainView.storiesCollectionView.dataSource = self
         load()
-        
-        //        self.dashboardView.collectionView.delegate = self
-        //        self.dashboardView.serv.delegate = self
-        //
-        //        self.dashboardView.collectionView.dataSource = self
-        //        self.dashboardView.services.dataSource = self
-        
-        //        view.backgroundColor = ColorStyle.mainColor.load()
-        //        let dbView = DashboardView(frame: CGRect(x: 0, y: (view.bounds.height * 0.155), width: view.bounds.width, height: view.bounds.height * 1))
-        //        view.addSubview(dbView)
-        //        collectionView.register(StoryCircleCel/*l.self, forCellWithReuseIdentifier: StoryCircleCell.reuseIdentifier)*/
-        //        dbView.addSubview(collectionView)
-        
-        
-        //        collectionView.register(ProductCardCell.self, forCellWithReuseIdentifier: ProductCardCell.reuseIdentifier)
-        
-        //        addConstraints()
     }
     
-    // MARK: Do something
-    
-    //@IBOutlet weak var nameTextField: UITextField!
     
     func load() {
         let request = Dashboard.Something.Request()
@@ -77,27 +57,18 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic {
 
 extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-        //        return self.customData.count
-        
-        //        if collectionView == dashboardView.collectionView {
-        //            return
-        //        } else {
-        //
-        //        }
+        return collectionView == mainView.storiesCollectionView ? 10 : 0
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCircleCell.reuseIdentifier, for: indexPath) as? StoryCircleCell else {
+        guard collectionView == mainView.storiesCollectionView,
+              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCircleCell.reuseIdentifier, for: indexPath) as? StoryCircleCell else {
             return UICollectionViewCell()
         }
         
-        //        let item = self.customData[indexPath.row]
-        //        cell.configure(data: item)
-        //        cell.data = item
         cell.imageView.image = UIImage(named: "StoryImage")
         return cell
+        
     }
-    
 }

@@ -55,11 +55,10 @@ final class TabBarController: UITabBarController
         dashboardView.tabBarItem.image = UIImage.add
         dashboardView.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
         dashboardView.tabBarItem.isEnabled = false
-        //        homeView.tabBarItem.titlePositionAdjustment = .init(horizontal: 0, vertical: -3)
         
         
-        let supportVC = DashboardViewController()
-        let supportView = MainNavigation(rootViewController: DashboardConfigurator.configure(supportVC))
+        let supportView = UIViewController()
+//        let supportView = MainNavigation(rootViewController: DashboardConfigurator.configure(supportVC))
         supportView.tabBarItem = UITabBarItem(title: "Dəstək", image: AppAssets.support.load(), tag: 2)
         
         
@@ -75,11 +74,20 @@ final class TabBarController: UITabBarController
         //self.updateConstraints()
     }
     
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if item.tag == 2 {
+            presentFreeSMSViewController()
+        }
+    }
+    
+    private func presentFreeSMSViewController() {
+        let freeSMSVC = FreeSMSViewController()
+        let navigationController = UINavigationController(rootViewController: freeSMSVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true)
+    }
+    
     private func setupUI() {
-        //        self.view.backgroundColor = .clear
-        //        self.tabBar.isTranslucent = false
-        //        self.tabBar.barTintColor = .white
-        //        self.tabBar.backgroundColor = .clear
         self.tabBar.tintColor = ColorStyle.mainColor.load()
         self.tabBar.unselectedItemTintColor = .gray
     }
@@ -99,8 +107,6 @@ final class TabBarController: UITabBarController
         middleButton.layer.zPosition = 1
         tabBar.bringSubviewToFront(middleButton)
         middleButton.setImage(AppAssets.program.load()?.resized(to: CGSize(width: 24, height: 24)), for: .normal)
-        
-        // Ensure that the image content mode is set appropriately
         middleButton.imageView?.contentMode = .scaleAspectFit
         
         
@@ -150,7 +156,6 @@ final class TabBarController: UITabBarController
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // Ensure the middle button is centered and positioned above the tab bar
         middleButton.center = CGPoint(x: tabBar.center.x, y: tabBar.bounds.minY - middleButton.bounds.height / 6 + 10)
         middleButton.layer.zPosition = 1
     }

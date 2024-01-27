@@ -9,13 +9,14 @@ import UIKit
 import SnapKit
 
 class ProductCardCell: UICollectionViewCell {
-    
+    let productType: ProductType
     static let reuseIdentifier = "ProductCardCell"
     
     // MARK: - View Components
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = .black
         label.textAlignment = .left
         return label
     }()
@@ -27,8 +28,9 @@ class ProductCardCell: UICollectionViewCell {
         return imageView
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(productType: ProductType) {
+        self.productType = productType
+        super.init(frame: .zero)
         setupViews()
         setupUI()
     }
@@ -38,45 +40,36 @@ class ProductCardCell: UICollectionViewCell {
     }
     
     // MARK: - Custom Method
-    
     private func setupViews() {
-        self.addSubview(self.titleLabel)
-        self.addSubview(self.imageView)
+        self.titleLabel.text = productType.getTitle()
+        self.imageView.image = productType.getImage()
+        contentView.addSubview(self.titleLabel)
+        contentView.addSubview(self.imageView)
         self.updateConstraints()
-        
     }
     
     override func updateConstraints() {
-        
-        imageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+        super.updateConstraints()
+        titleLabel.snp.updateConstraints { make in
+            make.top.equalTo(12)
+            make.right.equalTo(imageView.snp.left).offset(-8)
             make.left.equalToSuperview().inset(8)
-            make.height.width.equalTo(60)
-            make.right.lessThanOrEqualToSuperview().inset(8)
         }
         
-        titleLabel.snp.makeConstraints { make in
+        imageView.snp.updateConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(imageView.snp.right).offset(8)
             make.right.equalToSuperview().inset(8)
+            make.height.width.equalTo(80)
         }
-        
-        updateConstraints()
     }
     
-    func configure(with title: String, image: UIImage) {
-        titleLabel.text = title
-        imageView.image = image
-    }
     
     // MARK: - Update View
-    
     func setupUI() {
         contentView.backgroundColor = .clear
         self.backgroundColor = .white
         self.layer.cornerRadius = 16
-        self.layer.borderWidth = 1.0
-        self.layer.borderColor = UIColor.white.cgColor
+        self.clipsToBounds = true
         self.layer.masksToBounds = true
     }
 }
