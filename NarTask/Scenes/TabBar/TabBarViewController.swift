@@ -75,14 +75,34 @@ final class TabBarController: UITabBarController
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if item.tag == 1 {
+            presentBalanceTransferViewController()
+        }
         if item.tag == 2 {
             presentFreeSMSViewController()
         }
+        if item.tag == 3 {
+            presentVASViewController()
+        }
+    }
+    
+    private func presentBalanceTransferViewController() {
+        let balanceTransferVC = BalanceTransferViewController()
+        let navigationController = UINavigationController(rootViewController: balanceTransferVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true)
     }
     
     private func presentFreeSMSViewController() {
         let freeSMSVC = FreeSMSViewController()
         let navigationController = UINavigationController(rootViewController: freeSMSVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true)
+    }
+    
+    private func presentVASViewController() {
+        let vasVC = VASViewController()
+        let navigationController = UINavigationController(rootViewController: vasVC)
         navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: true)
     }

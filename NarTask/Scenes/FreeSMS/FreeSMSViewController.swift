@@ -23,8 +23,7 @@ class FreeSMSViewController: UIViewController, FreeSMSDisplayLogic
     
     // MARK: Object lifecycle
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-    {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
@@ -36,9 +35,7 @@ class FreeSMSViewController: UIViewController, FreeSMSDisplayLogic
     }
     
     // MARK: Setup
-    
-    private func setup()
-    {
+    private func setup() {
         let viewController = self
         let interactor = FreeSMSInteractor()
         let presenter = FreeSMSPresenter()
@@ -51,22 +48,9 @@ class FreeSMSViewController: UIViewController, FreeSMSDisplayLogic
         router.dataStore = interactor
     }
     
-    // MARK: Routing
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-    
     // MARK: View lifecycle
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupUI()
@@ -78,34 +62,19 @@ class FreeSMSViewController: UIViewController, FreeSMSDisplayLogic
     }
     
     private func setupNavigationBar() {
-        // Create an instance of UINavigationBarAppearance
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        
-        // Set the background color to white
         appearance.backgroundColor = .white
-        
-        // Customize the title text attributes to be pink
         appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-        
-        // Customize the large title text attributes if needed
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
-        
-        // Apply the appearance to the navigation bar
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        
-        // If you want the bar to be non-translucent
         navigationController?.navigationBar.isTranslucent = false
-        
-        // Set the navigation item's title
         navigationItem.title = "Pulsuz SMS"
-        
-        // If you want to set a custom back button
-        let backButtonImage = UIImage(named: "backBtn") // Use the correct system name for your image
-            let backButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backButtonTapped))
-            backButton.tintColor = UIColor.black
-            navigationItem.leftBarButtonItem = backButton
+        let backButtonImage = UIImage(named: "backBtn")
+        let backButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backButtonTapped))
+        backButton.tintColor = UIColor.black
+        navigationItem.leftBarButtonItem = backButton
     }
     
     
@@ -113,10 +82,7 @@ class FreeSMSViewController: UIViewController, FreeSMSDisplayLogic
         navigationController?.popViewController(animated: true)
     }
     
-    // MARK: Do something
-    
-    //@IBOutlet weak var nameTextField: UITextField!
-    
+    // MARK: Load
     func load()
     {
         let request = FreeSMS.Something.Request()
@@ -128,5 +94,5 @@ class FreeSMSViewController: UIViewController, FreeSMSDisplayLogic
         //nameTextField.text = viewModel.name
     }
     
-
+    
 }
