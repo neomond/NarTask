@@ -9,6 +9,15 @@ import UIKit
 import SnapKit
 
 class GridItemView: UICollectionViewCell {
+    private lazy var iconContainerView: UIView = {
+        let imgContainer = UIView()
+        imgContainer.translatesAutoresizingMaskIntoConstraints = false
+        imgContainer.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+        imgContainer.layer.cornerRadius = 20
+        imgContainer.clipsToBounds = true
+        return imgContainer
+    }()
+    
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -18,9 +27,10 @@ class GridItemView: UICollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .black
-        label.textAlignment = .center
+        label.textAlignment = .left
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -28,6 +38,7 @@ class GridItemView: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
+        setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,19 +46,47 @@ class GridItemView: UICollectionViewCell {
     }
     
     private func setupViews() {
-        contentView.addSubview(iconImageView)
+        contentView.addSubview(iconContainerView)
+        iconContainerView.addSubview(iconImageView)
         contentView.addSubview(titleLabel)
         
-        iconImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(8)
-            make.centerX.equalToSuperview()
-            make.size.equalTo(CGSize(width: 40, height: 40))
+        
+        iconContainerView.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(12)
+            make.bottom.equalToSuperview().inset(12)
+            make.height.width.equalTo(40)
         }
         
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(iconImageView.snp.bottom).offset(4)
-            make.left.right.equalToSuperview().inset(4)
+        iconImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(8)
+           
+            // This insets the imageView from the container view, providing the padding
         }
+        //        iconImageView.snp.makeConstraints { make in
+        //            make.centerY.equalToSuperview()
+        //            make.left.equalToSuperview().inset(12)
+        //            make.height.width.equalTo(40)
+        //        }
+        
+//        titleLabel.snp.updateConstraints { make in
+//            make.left.equalTo(iconContainerView.snp.right).offset(8)
+//            make.right.equalToSuperview().inset(8)
+//            make.centerY.equalToSuperview()
+//            make.height.equalTo(iconImageView.snp.height)
+//        }
+        titleLabel.snp.makeConstraints { make in
+                    make.left.equalTo(iconContainerView.snp.right).offset(8)
+                    make.centerY.equalTo(iconContainerView.snp.centerY)
+                    make.right.equalToSuperview().inset(8)
+                }
+    }
+    
+    private func setupUI() {
+        contentView.backgroundColor = .clear
+        self.backgroundColor = .white
+        //        contentView.layer.cornerRadius = 10
+        //        contentView.layer.cornerRadius = 10
+        
     }
     
     func configure(with serviceType: ServiceType) {

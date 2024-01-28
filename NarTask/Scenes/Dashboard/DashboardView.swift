@@ -61,7 +61,6 @@ class DashboardView: UIView {
         scrollView.addSubview(containerView)
         externalView.addSubview(scrollView)
         self.addSubview(externalView)
-        // setupServicesGridView()
     }
   
     

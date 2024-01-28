@@ -27,25 +27,25 @@ enum ServiceType: String, CaseIterable {
     func getImage() -> UIImage? {
         switch self {
         case .topUp:
-            AppAssets.tarifler.load()
+            AppAssets.top_up.load()
         case .credit:
-            AppAssets.tarifler.load()
+            AppAssets.credit.load()
         case .requestForHelp:
-            AppAssets.tarifler.load()
+            AppAssets.user_request.load()
         case .eSimOrder:
-            AppAssets.tarifler.load()
+            AppAssets.simcard.load()
         case .freeSMS:
-            AppAssets.tarifler.load()
+            AppAssets.sms.load()
         case .favouriteNumber:
-            AppAssets.tarifler.load()
+            AppAssets.favorite.load()
         case .balanceTransfer:
-            AppAssets.tarifler.load()
+            AppAssets.balance_transfer.load()
         case .cevirOffer:
-            AppAssets.tarifler.load()
+            AppAssets.exchange.load()
         case .servicesAbroad:
-            AppAssets.tarifler.load()
+            AppAssets.vas.load()
         case .roaming:
-            AppAssets.tarifler.load()
+            AppAssets.roaming.load()
         }
     }
 }
@@ -97,7 +97,8 @@ class ServicesGridView: UIView {
            
            contentStackView.snp.makeConstraints { make in
                make.top.equalTo(titleLabel.snp.bottom).offset(16)
-               make.left.right.bottom.equalToSuperview().inset(16)
+               make.left.right.bottom.equalToSuperview().inset(12)
+            
            }
        }
     
@@ -108,12 +109,16 @@ class ServicesGridView: UIView {
            rowStackView.alignment = .fill
            rowStackView.spacing = 10
            
-           views.forEach { rowStackView.addArrangedSubview($0) }
+           views.forEach { view in
+              view.snp.makeConstraints { make in
+                  make.height.equalTo(66)
+              }
+              rowStackView.addArrangedSubview(view)
+          }
            contentStackView.addArrangedSubview(rowStackView)
        }
     
     func setupGridItems() {
-            // Assuming a 2-column grid for this example
             let columnCount = 2
             let serviceTypes = ServiceType.allCases
             var gridItemViews: [GridItemView] = []
@@ -129,7 +134,6 @@ class ServicesGridView: UIView {
                 addRow(with: Array(rowViews))
             }
             
-            // Handle the last row if the number of services is odd
             if serviceTypes.count % columnCount != 0 {
                 let lastRowStartIndex = (serviceTypes.count / columnCount) * columnCount
                 let rowViews = gridItemViews[lastRowStartIndex..<serviceTypes.count]
