@@ -10,6 +10,7 @@ import UIKit
 public enum ColorStyle: String, CaseIterable {
     case mainColor = "MainColor"
     case labelColor = "LabelColor"
+    case dataLabel = "DataLabel"
     case black =  "BlackColor"
     case bgColor = "BgColor"
     case serviceBgColor = "ServiceBg"

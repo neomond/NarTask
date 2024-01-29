@@ -28,7 +28,6 @@ class BalanceTransferViewController: UIViewController, BalanceTransferDisplayLog
         super.viewDidLoad()
         self.load()
         
-        //      mainView?.delegate = self
         self.view = mainView
         setupNavigationBar()
     }
@@ -57,8 +56,7 @@ class BalanceTransferViewController: UIViewController, BalanceTransferDisplayLog
         interactor?.doSomething(request: request)
     }
     
-    func displaySomething(viewModel: BalanceTransfer.Something.ViewModel)
-    {
+    func displaySomething(viewModel: BalanceTransfer.Something.ViewModel) {
         //nameTextField.text = viewModel.name
     }
 }

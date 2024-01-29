@@ -29,9 +29,6 @@ class VASViewController: UIViewController, VASDisplayLogic
     }
     
     // MARK: View lifecycle
-    
-    
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -46,6 +43,7 @@ class VASViewController: UIViewController, VASDisplayLogic
         view.backgroundColor = ColorStyle.bgColor.load()
     }
     
+    // MARK: Setup Navigation Bar
     private func setupNavigationBar() {
         self.title = "Əlavə dəyər xidmətləri"
         
@@ -61,28 +59,6 @@ class VASViewController: UIViewController, VASDisplayLogic
             navigationController?.navigationBar.scrollEdgeAppearance = appearance
         }
     }
-    
-    // MARK: Setup Navigation Bar
-//    private func setupNavigationBar() {
-//        let appearance = UINavigationBarAppearance()
-//        appearance.configureWithOpaqueBackground()
-//        appearance.backgroundColor = .white
-//        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-//        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
-//        navigationController?.navigationBar.standardAppearance = appearance
-//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-//        navigationController?.navigationBar.isTranslucent = false
-//        navigationItem.title = "Əlavə dəyər xidmətləri"
-//        let backButtonImage = UIImage(named: "backBtn")
-//        let backButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backButtonTapped))
-//        backButton.tintColor = UIColor.black
-//        navigationItem.leftBarButtonItem = backButton
-//    }
-//    
-//    
-//    @objc private func backButtonTapped() {
-//        navigationController?.popViewController(animated: true)
-//    }
     
     // MARK: Do something
     func load()
