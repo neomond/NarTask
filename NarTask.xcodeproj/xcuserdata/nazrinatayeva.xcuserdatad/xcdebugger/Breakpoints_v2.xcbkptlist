@@ -24,7 +24,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "7579B984-600C-4000-AEC7-9FB4A4773412"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NarTask/Scenes/Dashboard/Views/StoriesCollectionView.swift"
@@ -64,6 +64,54 @@
                   startingLineNumber = "13"
                   endingLineNumber = "13"
                   offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D7C8A40A-7FA0-4C88-87F8-B32E2A80DE78"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NarTask/Scenes/Dashboard/DashboardViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "didSelectService(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D7C8A40A-7FA0-4C88-87F8-B32E2A80DE78 - c3eb3f3abac42f98"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NarTask.DashboardViewController.didSelectService(NarTask.ServiceType) -&gt; ()"
+                  moduleName = "NarTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazrinatayeva/Desktop/IOSDev/NarTask/NarTask/Scenes/Dashboard/DashboardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "D7C8A40A-7FA0-4C88-87F8-B32E2A80DE78 - c3eb3f3abac42f98"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NarTask.DashboardViewController.didSelectService(NarTask.ServiceType) -&gt; ()"
+                  moduleName = "NarTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazrinatayeva/Desktop/IOSDev/NarTask/NarTask/Scenes/Dashboard/DashboardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "52">
                </Location>
             </Locations>
          </BreakpointContent>

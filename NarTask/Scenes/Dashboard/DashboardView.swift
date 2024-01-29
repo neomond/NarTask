@@ -2,7 +2,7 @@
 import UIKit
 
 class DashboardView: UIView {
-    private let externalView: UIView = {
+    private lazy var externalView: UIView = {
         let view = UIView()
         view.backgroundColor = ColorStyle.bgColor.load()
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -20,10 +20,9 @@ class DashboardView: UIView {
     
     // MARK: - Services Grid View
     lazy var servicesGridView: ServicesGridView = {
-        let view = ServicesGridView()
+        let view =  ServicesGridView()
         return view
     }()
-    
     
     // MARK: - Stories Collection View
     lazy var storiesCollectionView: StoriesCollectionView = {
@@ -33,29 +32,27 @@ class DashboardView: UIView {
         return collectionView
     }()
     
-    
-    lazy var scrollView: UIScrollView = {
+   private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     
-    lazy var containerView: UIView = {
+    private lazy var containerView: UIView = {
         let view = UIView()
         return view
     }()
     
-    lazy var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
         view.spacing = 16
         return view
     }()
     
-    
     private func setupSubviews() {
         stackView.addArrangedSubview(storiesCollectionView)
-        stackView.addArrangedSubview(productCardContainerView)
+//      stackView.addArrangedSubview(productCardContainerView)
         stackView.addArrangedSubview(servicesGridView)
         self.containerView.addSubview(stackView)
         scrollView.addSubview(containerView)
@@ -63,10 +60,10 @@ class DashboardView: UIView {
         self.addSubview(externalView)
     }
   
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = ColorStyle.mainColor.load()
+        
         setupSubviews()
         addConstraints()
     }

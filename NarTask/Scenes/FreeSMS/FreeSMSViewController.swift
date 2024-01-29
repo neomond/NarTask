@@ -13,86 +13,63 @@
 import UIKit
 
 protocol FreeSMSDisplayLogic: AnyObject {
-    func displaySomething(viewModel: FreeSMS.Something.ViewModel)
+    func displaySomething(viewModel: FreeSMS.Load.ViewModel)
 }
 
 class FreeSMSViewController: UIViewController, FreeSMSDisplayLogic
 {
+    func displaySomething(viewModel: FreeSMS.Load.ViewModel) {
+        
+    }
+    
     var interactor: FreeSMSBusinessLogic?
     var router: (NSObjectProtocol & FreeSMSRoutingLogic & FreeSMSDataPassing)?
     
-    // MARK: Object lifecycle
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder)
-    {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    // MARK: Setup
-    private func setup() {
-        let viewController = self
-        let interactor = FreeSMSInteractor()
-        let presenter = FreeSMSPresenter()
-        let router = FreeSMSRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
-    }
+    var mainView: FreeSMSView!
     
     // MARK: View lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view = mainView
+        self.load()
         setupNavigationBar()
         setupUI()
-        load()
+        
     }
+    
     
     private func setupUI() {
         view.backgroundColor = ColorStyle.bgColor.load()
     }
     
     private func setupNavigationBar() {
+        self.title = "Pulsuz SMS"
+        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .white
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        appearance.backgroundColor = UIColor(.white)
         appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
         navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.isTranslucent = false
-        navigationItem.title = "Pulsuz SMS"
-        let backButtonImage = UIImage(named: "backBtn")
-        let backButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backButtonTapped))
-        backButton.tintColor = UIColor.black
-        navigationItem.leftBarButtonItem = backButton
+        if #available(iOS 15.0, *) {
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
     }
     
-    
-    @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
-    }
     
     // MARK: Load
     func load()
     {
-        let request = FreeSMS.Something.Request()
-        interactor?.doSomething(request: request)
+        let request = FreeSMS.Load.Request()
+        //       interactor?.doSomething(request: request)
     }
     
-    func displaySomething(viewModel: FreeSMS.Something.ViewModel)
-    {
-        //nameTextField.text = viewModel.name
-    }
+    //    func displaySomething(viewModel: FreeSMS.Load.ViewModel)
+    //    {
+    //        //nameTextField.text = viewModel.name
+    //    }
     
     
 }

@@ -13,90 +13,86 @@
 import UIKit
 
 protocol VASDisplayLogic: AnyObject {
-  func displaySomething(viewModel: VAS.Something.ViewModel)
+    func displaySomething(viewModel: VAS.Something.ViewModel)
 }
 
 class VASViewController: UIViewController, VASDisplayLogic
 {
-  var interactor: VASBusinessLogic?
-  var router: (NSObjectProtocol & VASRoutingLogic & VASDataPassing)?
-
-  // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = VASInteractor()
-    let presenter = VASPresenter()
-    let router = VASRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-      self.load()
-      
-      setupUI()
-      setupNavigationBar()
-  }
+    var interactor: VASBusinessLogic?
+    var router: (NSObjectProtocol & VASRoutingLogic & VASDataPassing)?
+    
+    var mainView: VASView?
+    
+    override func loadView() {
+        super.loadView()
+        self.view = mainView
+    }
+    
+    // MARK: View lifecycle
+    
+    
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        self.view = mainView
+        self.load()
+ 
+        setupUI()
+        setupNavigationBar()
+    }
     
     private func setupUI() {
         view.backgroundColor = ColorStyle.bgColor.load()
     }
-  
-  // MARK: Setup Navigation Bar
+    
     private func setupNavigationBar() {
+        self.title = "Əlavə dəyər xidmətləri"
+        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .white
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        appearance.backgroundColor = UIColor(.white)
         appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
         navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.isTranslucent = false
-        navigationItem.title = "Əlavə dəyər xidmətləri"
-        let backButtonImage = UIImage(named: "backBtn")
-        let backButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backButtonTapped))
-        backButton.tintColor = UIColor.black
-        navigationItem.leftBarButtonItem = backButton
+        if #available(iOS 15.0, *) {
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
     }
     
+    // MARK: Setup Navigation Bar
+//    private func setupNavigationBar() {
+//        let appearance = UINavigationBarAppearance()
+//        appearance.configureWithOpaqueBackground()
+//        appearance.backgroundColor = .white
+//        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+//        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+//        navigationController?.navigationBar.standardAppearance = appearance
+//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+//        navigationController?.navigationBar.isTranslucent = false
+//        navigationItem.title = "Əlavə dəyər xidmətləri"
+//        let backButtonImage = UIImage(named: "backBtn")
+//        let backButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backButtonTapped))
+//        backButton.tintColor = UIColor.black
+//        navigationItem.leftBarButtonItem = backButton
+//    }
+//    
+//    
+//    @objc private func backButtonTapped() {
+//        navigationController?.popViewController(animated: true)
+//    }
     
-    @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
+    // MARK: Do something
+    func load()
+    {
+        let request = VAS.Something.Request()
+        interactor?.doSomething(request: request)
     }
     
-  // MARK: Do something
-  func load()
-  {
-    let request = VAS.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: VAS.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    func displaySomething(viewModel: VAS.Something.ViewModel)
+    {
+        //nameTextField.text = viewModel.name
+    }
 }

@@ -35,10 +35,19 @@ class GridItemView: UICollectionViewCell {
         return label
     }()
     
+    // Add a public computed property or method to get the service type
+      var serviceType: ServiceType? {
+          if let title = titleLabel.text {
+              return ServiceType(rawValue: title)
+          }
+          return nil
+      }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
         setupUI()
+        isUserInteractionEnabled = true
     }
     
     required init?(coder aDecoder: NSCoder) {

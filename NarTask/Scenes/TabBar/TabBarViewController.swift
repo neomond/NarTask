@@ -11,7 +11,6 @@ import UIKit
 protocol TabBarDisplayLogic: AnyObject {
 }
 
-
 final class TabBarController: UITabBarController
 //                                ThemeableViewController
 {
@@ -20,6 +19,8 @@ final class TabBarController: UITabBarController
     
     var interactor: TabBarBusinessLogic?
     var router: (NSObjectProtocol & TabBarRoutingLogic & TabBarDataPassing)?
+    var servicesGridView: ServicesGridView!
+    
     
     // MARK: - Lifecycle Methods
     
@@ -33,6 +34,8 @@ final class TabBarController: UITabBarController
         setupMiddleButton()
         setupCustomTabBar()
     }
+    
+    
     
     // MARK: - Private
     
@@ -58,7 +61,7 @@ final class TabBarController: UITabBarController
         
         
         let supportView = UIViewController()
-//        let supportView = MainNavigation(rootViewController: DashboardConfigurator.configure(supportVC))
+        //        let supportView = MainNavigation(rootViewController: DashboardConfigurator.configure(supportVC))
         supportView.tabBarItem = UITabBarItem(title: "Dəstək", image: AppAssets.support.load(), tag: 2)
         
         
@@ -74,17 +77,23 @@ final class TabBarController: UITabBarController
         //self.updateConstraints()
     }
     
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item.tag == 1 {
-            presentBalanceTransferViewController()
+        override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+            if item.tag == 1 {
+                presentBalanceTransferViewController()
+            }
+            if item.tag == 2 {
+                presentFreeSMSViewController()
+            }
+            if item.tag == 3 {
+                presentVASViewController()
+            }
         }
-        if item.tag == 2 {
-            presentFreeSMSViewController()
-        }
-        if item.tag == 3 {
-            presentVASViewController()
-        }
-    }
+    
+//    // Conform to ServicesGridViewDelegate
+//    func didSelectService(_ service: ServiceType) {
+//        presentViewController(for: service)
+//        print("Service selected: \(service)")
+//    }
     
     private func presentBalanceTransferViewController() {
         let balanceTransferVC = BalanceTransferViewController()
@@ -112,6 +121,32 @@ final class TabBarController: UITabBarController
         self.tabBar.unselectedItemTintColor = .gray
     }
     
+    
+    // MARK: - Presenting VC
+    private func presentViewController(for serviceType: ServiceType) {
+        let navigationController: UINavigationController
+        
+        switch serviceType {
+        case .freeSMS:
+            let freeSMSVC = FreeSMSViewController()
+            navigationController = UINavigationController(rootViewController: freeSMSVC)
+        case .balanceTransfer:
+            let balanceTransferVC = BalanceTransferViewController()
+            navigationController = UINavigationController(rootViewController: balanceTransferVC)
+        case .servicesAbroad:
+            let vasVC = VASViewController()
+            navigationController = UINavigationController(rootViewController: vasVC)
+            
+        default:
+            return
+        }
+        
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true)
+    }
+    
+    
+    
     private func setupMiddleButton() {
         middleButton.frame = CGRect(x: (view.bounds.width / 2) - 30, y: -20 + 10, width: 56, height: 56)
         
@@ -128,8 +163,6 @@ final class TabBarController: UITabBarController
         tabBar.bringSubviewToFront(middleButton)
         middleButton.setImage(AppAssets.program.load()?.resized(to: CGSize(width: 24, height: 24)), for: .normal)
         middleButton.imageView?.contentMode = .scaleAspectFit
-        
-        
     }
     
     @objc private func middleButtonAction() {

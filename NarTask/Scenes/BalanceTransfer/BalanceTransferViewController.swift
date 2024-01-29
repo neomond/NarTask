@@ -13,91 +13,52 @@
 import UIKit
 
 protocol BalanceTransferDisplayLogic: AnyObject {
-  func displaySomething(viewModel: BalanceTransfer.Something.ViewModel)
+    func displaySomething(viewModel: BalanceTransfer.Something.ViewModel)
 }
 
 class BalanceTransferViewController: UIViewController, BalanceTransferDisplayLogic {
-  var interactor: BalanceTransferBusinessLogic?
-  var router: (NSObjectProtocol & BalanceTransferRoutingLogic & BalanceTransferDataPassing)?
-
-  // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = BalanceTransferInteractor()
-    let presenter = BalanceTransferPresenter()
-    let router = BalanceTransferRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-      self.load()
-      setupUI()
-      setupNavigationBar()
-  }
-  
+    var mainView: BalanceTransferView?
+    var interactor: BalanceTransferBusinessLogic?
+    var router: (NSObjectProtocol & BalanceTransferRoutingLogic & BalanceTransferDataPassing)?
     
-    private func setupUI() {
-        view.backgroundColor = ColorStyle.bgColor.load()
+    // MARK: View lifecycle
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        self.load()
+        
+        //      mainView?.delegate = self
+        self.view = mainView
+        setupNavigationBar()
     }
-  
     
     private func setupNavigationBar() {
+        self.title = "Balans köçürmə"
+        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .white
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        appearance.backgroundColor = UIColor(.white)
         appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
         navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.isTranslucent = false
-        navigationItem.title = "Balans köçürmə"
-        let backButtonImage = UIImage(named: "backBtn")
-        let backButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backButtonTapped))
-        backButton.tintColor = UIColor.black
-        navigationItem.leftBarButtonItem = backButton
+        if #available(iOS 15.0, *) {
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
     }
     
+    // MARK: Do something
     
-    @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
+    func load()
+    {
+        let request = BalanceTransfer.Something.Request()
+        interactor?.doSomething(request: request)
     }
     
-    
-  // MARK: Do something
-  
-  func load()
-  {
-    let request = BalanceTransfer.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: BalanceTransfer.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    func displaySomething(viewModel: BalanceTransfer.Something.ViewModel)
+    {
+        //nameTextField.text = viewModel.name
+    }
 }

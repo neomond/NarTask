@@ -6,7 +6,6 @@
 //
 
 import UIKit
-//import AzercellUIkit
 
 final class MainNavigation: UINavigationController, ThemeableViewController {
     
@@ -67,8 +66,8 @@ final class MainNavigation: UINavigationController, ThemeableViewController {
         self.setupUI()
         
         if responds(to: #selector(getter: interactivePopGestureRecognizer)) {
-            //            interactivePopGestureRecognizer?.delegate = self
-            //            delegate = self
+                        interactivePopGestureRecognizer?.delegate = self
+                        delegate = self
         }
     }
     
@@ -95,39 +94,38 @@ final class MainNavigation: UINavigationController, ThemeableViewController {
     // MARK: - Private
     
     private func setupUI() {
-        //        let titleTextAttributes = [
-        //            NSAttributedString.Key.foregroundColor: adaptiveColor(.main)
-        //        ]
-        //
-        //        if #available(iOS 13.0, *) {
-        //            let appearance = UINavigationBarAppearance()
-        //            appearance.configureWithOpaqueBackground()
-        //            appearance.backgroundColor = adaptiveColor(.black)
-        //            appearance.titleTextAttributes = titleTextAttributes
-        //            appearance.shadowColor = adaptiveColor(.black)
-        //            self.navigationBar.standardAppearance = appearance
-        //            self.navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
-        //        } else {
-        //            self.navigationBar.barTintColor = adaptiveColor(.black)
-        //            self.navigationBar.titleTextAttributes = titleTextAttributes
-        //        }
-        //
-        //        self.navigationBar.isTranslucent = false
-        //        self.navigationBar.tintColor = adaptiveColor(.black)
-        //    }
+                let titleTextAttributes = [
+                    NSAttributedString.Key.foregroundColor: UIColor.black
+                ]
+        
+                if #available(iOS 13.0, *) {
+                    let appearance = UINavigationBarAppearance()
+                    appearance.configureWithOpaqueBackground()
+                    appearance.backgroundColor = ColorStyle.serviceBgColor.load()
+                    appearance.titleTextAttributes = titleTextAttributes
+                    appearance.shadowColor = UIColor.black
+                    self.navigationBar.standardAppearance = appearance
+                    self.navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
+                } else {
+                    self.navigationBar.barTintColor = barTintColor
+                    self.navigationBar.titleTextAttributes = titleTextAttributes
+                }
+                self.navigationBar.isTranslucent = false
+                self.navigationBar.tintColor = UIColor.black
+            }
     }
     
-    //extension MainNavigation: UINavigationControllerDelegate {
-    //
-    //    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-    //        interactivePopGestureRecognizer?.isEnabled = (responds(to: #selector(getter: interactivePopGestureRecognizer)) && viewControllers.count > 1)
-    //    }
-    //}
-    //
-    //extension MainNavigation: UIGestureRecognizerDelegate {
-    //
-    //    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-    //        return viewControllers.count > 1
-    //    }
-    //}
-}
+    extension MainNavigation: UINavigationControllerDelegate {
+    
+        func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+            interactivePopGestureRecognizer?.isEnabled = (responds(to: #selector(getter: interactivePopGestureRecognizer)) && viewControllers.count > 1)
+        }
+    }
+    
+    extension MainNavigation: UIGestureRecognizerDelegate {
+    
+        func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+            return viewControllers.count > 1
+        }
+    }
+

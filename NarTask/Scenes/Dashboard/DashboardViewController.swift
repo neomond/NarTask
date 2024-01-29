@@ -20,30 +20,38 @@ protocol DashboardDisplayLogic: AnyObject {
 class DashboardViewController: UIViewController, DashboardDisplayLogic {
     var interactor: DashboardBusinessLogic?
     var router: (NSObjectProtocol & DashboardRoutingLogic & DashboardDataPassing)?
+    var mainView: DashboardView!
     
-    lazy var mainView: DashboardView = {
-        let view = DashboardView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
     
+//    lazy var mainView: DashboardView = {
+//        let view = DashboardView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
+//    
     override func loadView() {
         super.loadView()
-        view = UIView()
-        view.addSubview(mainView)
+        self.view = mainView
+//        view = UIView()
+//        var mainView: DashboardView!
+//        view.addSubview(mainView)
         
-        mainView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+//        mainView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        navigationController?.isNavigationBarHidden = true
         mainView.storiesCollectionView.delegate = self
         mainView.storiesCollectionView.dataSource = self
-        load()
+        
+        mainView.servicesGridView.delegate = self
+        self.load()
     }
     
+
     
     func load() {
         let request = Dashboard.Something.Request()
@@ -72,3 +80,29 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         
     }
 }
+
+//extension DashboardViewController: ServicesGridViewDelegate {
+//    func didSelectService(_ service: ServiceType) {
+//
+////        navigationController?.pushViewController(FreeSMSConfigurator.configure(FreeSMSViewController()), animated: true)
+//        print("service is tapped and working")
+//    }
+//}
+
+extension DashboardViewController: ServicesGridViewDelegate {
+    func didSelectService(_ service: ServiceType) {
+        switch service {
+        case .freeSMS:
+            router?.routeToFreeSMS()
+        case .balanceTransfer:
+             router?.routeToBalanceTransfer()
+        case .servicesAbroad:
+            router?.routeToVAS()
+        default:
+            break
+        }
+//        print("service is tapped and working")
+    }
+}
+
+
