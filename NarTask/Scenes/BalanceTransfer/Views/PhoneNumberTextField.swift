@@ -31,18 +31,15 @@ class PhoneNumberTextField: UITextField {
     
     // MARK: - Setup Views
     private func setupViews() {
-        // Customize the text field appearance
         borderStyle = .none
         backgroundColor = .white
         keyboardType = .phonePad
         placeholder = "Mobil nömrə"
         
-        // Add the button as a rightView
         rightView = contactsButton
         rightViewMode = .always
         
-        // Set the corner radius and other styles to match your design
-        layer.cornerRadius = 10
+        layer.cornerRadius = 16
         
         
         setupConstraints()
@@ -52,11 +49,11 @@ class PhoneNumberTextField: UITextField {
     // MARK: - Constraints
     private func setupConstraints() {
         snp.makeConstraints { make in
-            make.height.equalTo(56) // Example height, adjust as needed
+            make.height.equalTo(56)
         }
         
         contactsButton.snp.makeConstraints { make in
-            make.size.equalTo(CGSize(width: 40, height: 40)) // Adjust size as needed
+            make.size.equalTo(CGSize(width: 40, height: 40))
         }
     }
     
@@ -66,7 +63,7 @@ class PhoneNumberTextField: UITextField {
     }
     
     @objc private func contactsButtonTapped() {
-    
+        // logic to be continued
     }
     
     // MARK: - Override Methods
@@ -79,7 +76,7 @@ class PhoneNumberTextField: UITextField {
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 40))
+        return bounds.inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 40))
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
@@ -87,7 +84,7 @@ class PhoneNumberTextField: UITextField {
     }
     
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 40))
+        return bounds.inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 40))
     }
     
     // MARK: - Public Methods

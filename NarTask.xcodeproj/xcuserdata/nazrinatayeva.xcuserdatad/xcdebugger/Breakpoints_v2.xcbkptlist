@@ -72,7 +72,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D7C8A40A-7FA0-4C88-87F8-B32E2A80DE78"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NarTask/Scenes/Dashboard/DashboardViewController.swift"
@@ -113,7 +113,38 @@
                   endingLineNumber = "102"
                   offsetFromSymbolStart = "52">
                </Location>
+               <Location
+                  uuid = "D7C8A40A-7FA0-4C88-87F8-B32E2A80DE78 - c3eb3f3abac4d083"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NarTask.DashboardViewController.didSelectService(NarTask.ServiceType) -&gt; ()"
+                  moduleName = "NarTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazrinatayeva/Desktop/IOSDev/NarTask/NarTask/Scenes/Dashboard/DashboardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "52">
+               </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "66BA2894-EBD6-4FEC-AF64-C6588DAF38BE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NarTask/Scenes/BalanceTransfer/BalanceTransferView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "addConstraints()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
