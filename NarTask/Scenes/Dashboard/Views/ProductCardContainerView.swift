@@ -25,10 +25,9 @@ extension ProductType {
         }
     }
 }
+
 class ProductCardContainerView: UIView {
-    
     private var productCardCells: [ProductCardCell] = []
-    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -67,9 +66,23 @@ class ProductCardContainerView: UIView {
         
     }
     
+//    private func setupProductCards() {
+//        ProductType.allCases.forEach { productType in
+//            self.productCardCells.append(ProductCardCell(productType: productType))
+//        }
+//    }
+//    
+    
     private func setupProductCards() {
         ProductType.allCases.forEach { productType in
-            self.productCardCells.append(ProductCardCell(productType: productType))
+            let productCardCell = ProductCardCell(productType: productType)
+            productCardCell.layer.cornerRadius = 16
+            productCardCell.clipsToBounds = true
+            productCardCell.snp.makeConstraints { make in
+                make.width.equalTo(80)
+                make.height.equalTo(80)
+            }
+            self.productCardCells.append(productCardCell)
         }
     }
     
@@ -82,7 +95,6 @@ class ProductCardContainerView: UIView {
             make.horizontalEdges.equalToSuperview().inset(16)
             make.height.equalTo(80)
         }
-        
         
     }
     

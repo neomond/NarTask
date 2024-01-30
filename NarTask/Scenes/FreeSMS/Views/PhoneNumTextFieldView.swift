@@ -1,16 +1,17 @@
 //
-//  PhoneNumberTextField.swift
+//  PhoneNumTextFieldView.swift
 //  NarTask
 //
-//  Created by Nazrin Atayeva on 29.01.24.
+//  Created by Nazrin Atayeva on 30.01.24.
 //
+
 
 import UIKit
 import SnapKit
 
-class PhoneNumberTextField: UITextField, UITextFieldDelegate {
+class PhoneNumTextFieldView: UITextField, UITextFieldDelegate {
     // MARK: - Subviews
-    private let prefixLabel: UILabel = {
+   private let prefixLabel: UILabel = {
         let label = UILabel()
         label.text = "+994"
         label.font = UIFont.systemFont(ofSize: 16)
@@ -20,8 +21,8 @@ class PhoneNumberTextField: UITextField, UITextFieldDelegate {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Mobil nömrə"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.text = "Kimə"
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = ColorStyle.dataLabel.load()
         return label
     }()
@@ -64,21 +65,17 @@ class PhoneNumberTextField: UITextField, UITextFieldDelegate {
     
     // MARK: - Constraints
     private func setupConstraints() {
-        
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
             make.left.equalToSuperview().offset(16)
         }
-        
         prefixLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(16)
             make.bottom.equalToSuperview().offset(-12)
         }
-        
         snp.makeConstraints { make in
             make.height.equalTo(56)
         }
-        
         contactsButton.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: 40, height: 40))
         }

@@ -36,7 +36,6 @@ final class TabBarController: UITabBarController
     }
     
     
-    
     // MARK: - Private
     
     private func addControllers() {
@@ -61,7 +60,6 @@ final class TabBarController: UITabBarController
         
         
         let supportView = UIViewController()
-        //        let supportView = MainNavigation(rootViewController: DashboardConfigurator.configure(supportVC))
         supportView.tabBarItem = UITabBarItem(title: "Dəstək", image: AppAssets.support.load(), tag: 2)
         
         
@@ -76,45 +74,7 @@ final class TabBarController: UITabBarController
     private func addSubviews() {
         //self.updateConstraints()
     }
-    
-        override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-            if item.tag == 1 {
-                presentBalanceTransferViewController()
-            }
-            if item.tag == 2 {
-                presentFreeSMSViewController()
-            }
-            if item.tag == 3 {
-                presentVASViewController()
-            }
-        }
-    
-//    // Conform to ServicesGridViewDelegate
-//    func didSelectService(_ service: ServiceType) {
-//        presentViewController(for: service)
-//        print("Service selected: \(service)")
-//    }
-    
-    private func presentBalanceTransferViewController() {
-        let balanceTransferVC = BalanceTransferViewController()
-        let navigationController = UINavigationController(rootViewController: balanceTransferVC)
-        navigationController.modalPresentationStyle = .fullScreen
-        self.present(navigationController, animated: true)
-    }
-    
-    private func presentFreeSMSViewController() {
-        let freeSMSVC = FreeSMSViewController()
-        let navigationController = UINavigationController(rootViewController: freeSMSVC)
-        navigationController.modalPresentationStyle = .fullScreen
-        self.present(navigationController, animated: true)
-    }
-    
-    private func presentVASViewController() {
-        let vasVC = VASViewController()
-        let navigationController = UINavigationController(rootViewController: vasVC)
-        navigationController.modalPresentationStyle = .fullScreen
-        self.present(navigationController, animated: true)
-    }
+
     
     private func setupUI() {
         self.tabBar.tintColor = ColorStyle.mainColor.load()

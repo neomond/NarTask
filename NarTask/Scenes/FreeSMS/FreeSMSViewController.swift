@@ -13,12 +13,12 @@
 import UIKit
 
 protocol FreeSMSDisplayLogic: AnyObject {
-    func displaySomething(viewModel: FreeSMS.Load.ViewModel)
+    func displaySomething(viewModel: FreeSMS.Something.ViewModel)
 }
 
 class FreeSMSViewController: UIViewController, FreeSMSDisplayLogic
 {
-    func displaySomething(viewModel: FreeSMS.Load.ViewModel) {
+    func displaySomething(viewModel: FreeSMS.Something.ViewModel) {
         
     }
     
@@ -28,18 +28,13 @@ class FreeSMSViewController: UIViewController, FreeSMSDisplayLogic
     var mainView: FreeSMSView!
     
     // MARK: View lifecycle
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        self.view = mainView
         self.load()
-        setupNavigationBar()
-        setupUI()
         
-    }
-    
-    
-    private func setupUI() {
-        view.backgroundColor = ColorStyle.bgColor.load()
+        self.view = mainView
+        setupNavigationBar()
     }
     
     private func setupNavigationBar() {
@@ -62,14 +57,13 @@ class FreeSMSViewController: UIViewController, FreeSMSDisplayLogic
     // MARK: Load
     func load()
     {
-        let request = FreeSMS.Load.Request()
-        //       interactor?.doSomething(request: request)
+        let request = FreeSMS.Something.Request()
+        interactor?.doSomething(request: request)
     }
     
-    //    func displaySomething(viewModel: FreeSMS.Load.ViewModel)
-    //    {
-    //        //nameTextField.text = viewModel.name
-    //    }
+    func displaySomething(viewModel: BalanceTransfer.Something.ViewModel) {
+        //nameTextField.text = viewModel.name
+    }
     
     
 }

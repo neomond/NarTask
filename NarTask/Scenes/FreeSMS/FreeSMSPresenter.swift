@@ -9,7 +9,7 @@ import UIKit
 
 protocol FreeSMSPresentationLogic {
     
-    func presentLoad(response: FreeSMS.Load.Response)
+    func presentLoad(response: FreeSMS.Something.Response)
 }
 
 final class FreeSMSPresenter: FreeSMSPresentationLogic {
@@ -19,8 +19,8 @@ final class FreeSMSPresenter: FreeSMSPresentationLogic {
     
     // MARK: Presentation
   
-    func presentLoad(response: FreeSMS.Load.Response) {
-        let viewModel = FreeSMS.Load.ViewModel()
+    func presentLoad(response: FreeSMS.Something.Response) {
+        let viewModel = FreeSMS.Something.ViewModel()
 //        viewController?.displayLoad(viewModel: viewModel)
     }
 }

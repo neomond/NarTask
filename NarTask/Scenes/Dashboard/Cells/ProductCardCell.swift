@@ -72,4 +72,6 @@ class ProductCardCell: UICollectionViewCell {
         self.clipsToBounds = true
         self.layer.masksToBounds = true
     }
+    
+
 }

@@ -23,27 +23,14 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic {
     var mainView: DashboardView!
     
     
-//    lazy var mainView: DashboardView = {
-//        let view = DashboardView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-//    
     override func loadView() {
         super.loadView()
         self.view = mainView
-//        view = UIView()
-//        var mainView: DashboardView!
-//        view.addSubview(mainView)
-        
-//        mainView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationController?.isNavigationBarHidden = true
+        //        navigationController?.isNavigationBarHidden = true
         mainView.storiesCollectionView.delegate = self
         mainView.storiesCollectionView.dataSource = self
         
@@ -51,7 +38,17 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic {
         self.load()
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Hide the navigation bar
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Show the navigation bar when leaving the DashboardViewController
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
     
     func load() {
         let request = Dashboard.Something.Request()
@@ -95,13 +92,13 @@ extension DashboardViewController: ServicesGridViewDelegate {
         case .freeSMS:
             router?.routeToFreeSMS()
         case .balanceTransfer:
-             router?.routeToBalanceTransfer()
+            router?.routeToBalanceTransfer()
         case .servicesAbroad:
             router?.routeToVAS()
         default:
             break
         }
-//        print("service is tapped and working")
+        //        print("service is tapped and working")
     }
 }
 

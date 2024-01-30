@@ -11,7 +11,7 @@ enum FreeSMS {
     
     // MARK: Use cases
   
-    enum Load {
+    enum Something {
         
         struct Request {
         }

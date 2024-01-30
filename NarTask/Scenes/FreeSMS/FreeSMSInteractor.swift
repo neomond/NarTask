@@ -9,7 +9,7 @@ import UIKit
 
 protocol FreeSMSBusinessLogic {
     
-    func load(request: FreeSMS.Load.Request)
+    func doSomething(request: FreeSMS.Something.Request)
 }
 
 protocol FreeSMSDataStore {
@@ -26,8 +26,8 @@ final class FreeSMSInteractor: FreeSMSBusinessLogic, FreeSMSDataStore {
     
     // MARK: Business Logic
   
-    func load(request: FreeSMS.Load.Request) {
-        let response = FreeSMS.Load.Response()
+    func doSomething(request: FreeSMS.Something.Request) {
+        let response = FreeSMS.Something.Response()
         presenter?.presentLoad(response: response)
     }
 }

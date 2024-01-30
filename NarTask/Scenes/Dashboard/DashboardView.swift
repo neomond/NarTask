@@ -52,7 +52,7 @@ class DashboardView: UIView {
     
     private func setupSubviews() {
         stackView.addArrangedSubview(storiesCollectionView)
-//      stackView.addArrangedSubview(productCardContainerView)
+        stackView.addArrangedSubview(productCardContainerView)
         stackView.addArrangedSubview(servicesGridView)
         self.containerView.addSubview(stackView)
         scrollView.addSubview(containerView)
@@ -91,6 +91,10 @@ class DashboardView: UIView {
         storiesCollectionView.snp.makeConstraints { make in
             make.height.equalTo(80 + 24)
         }
+        productCardContainerView.snp.makeConstraints { make in
+            make.height.equalTo(100 + 24)
+        }
+        
         
     }
 }
