@@ -34,7 +34,6 @@ final class FreeSMSView: UIView {
         let view = UIView()
         return view
     }()
-    
     private lazy var sendBtnView = FreeSMSBtnView()
     private lazy var dailySMSLimitView = DailySMSLimitView()
     private lazy var phoneNumTextFieldView = PhoneNumTextFieldView()

@@ -20,7 +20,6 @@ class VASViewController: UIViewController, VASDisplayLogic
 {
     var interactor: VASBusinessLogic?
     var router: (NSObjectProtocol & VASRoutingLogic & VASDataPassing)?
-    
     var mainView: VASView?
     
     override func loadView() {
@@ -32,16 +31,13 @@ class VASViewController: UIViewController, VASDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.view = mainView
+        
         self.load()
- 
-        setupUI()
+        self.view = mainView
         setupNavigationBar()
     }
     
-    private func setupUI() {
-        view.backgroundColor = ColorStyle.bgColor.load()
-    }
+   
     
     // MARK: Setup Navigation Bar
     private func setupNavigationBar() {

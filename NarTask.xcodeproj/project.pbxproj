@@ -24,6 +24,8 @@
 		7A10F9A12B66CE1900FEF091 /* BalanceTransferInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A10F99B2B66CE1900FEF091 /* BalanceTransferInteractor.swift */; };
 		7A10F9A32B676B2900FEF091 /* BalanceTransferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A10F9A22B676B2900FEF091 /* BalanceTransferView.swift */; };
 		7A3E25532B68385200C95B43 /* ServiceDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3E25522B68385200C95B43 /* ServiceDescriptionView.swift */; };
+		7A5FD7292B6989B1003EA1FE /* CallForwardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5FD7282B6989B1003EA1FE /* CallForwardingView.swift */; };
+		7A5FD72B2B699399003EA1FE /* MissedCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5FD72A2B699399003EA1FE /* MissedCallView.swift */; };
 		7A8023252B61B5CE00329D08 /* ProductCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8023242B61B5CE00329D08 /* ProductCardCell.swift */; };
 		7A8023272B61BB6D00329D08 /* ProductCardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8023262B61BB6D00329D08 /* ProductCardContainerView.swift */; };
 		7A81C0802B5FC098009947E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81C07F2B5FC098009947E0 /* AppDelegate.swift */; };
@@ -97,6 +99,8 @@
 		7A10F99B2B66CE1900FEF091 /* BalanceTransferInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTransferInteractor.swift; sourceTree = "<group>"; };
 		7A10F9A22B676B2900FEF091 /* BalanceTransferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTransferView.swift; sourceTree = "<group>"; };
 		7A3E25522B68385200C95B43 /* ServiceDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDescriptionView.swift; sourceTree = "<group>"; };
+		7A5FD7282B6989B1003EA1FE /* CallForwardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallForwardingView.swift; sourceTree = "<group>"; };
+		7A5FD72A2B699399003EA1FE /* MissedCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedCallView.swift; sourceTree = "<group>"; };
 		7A8023242B61B5CE00329D08 /* ProductCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardCell.swift; sourceTree = "<group>"; };
 		7A8023262B61BB6D00329D08 /* ProductCardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardContainerView.swift; sourceTree = "<group>"; };
 		7A81C07C2B5FC098009947E0 /* NarTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NarTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +172,7 @@
 		7A10F9862B66C91100FEF091 /* VAS */ = {
 			isa = PBXGroup;
 			children = (
+				7A5FD7272B6988AE003EA1FE /* Views */,
 				7A10F9872B66C93400FEF091 /* VASPresenter.swift */,
 				7A10F9882B66C93400FEF091 /* VASWorker.swift */,
 				7A10F9892B66C93400FEF091 /* VASRouter.swift */,
@@ -194,6 +199,15 @@
 				7ADFF86A2B678C0B0048A7F9 /* BalanceTransferConfigurator.swift */,
 			);
 			path = BalanceTransfer;
+			sourceTree = "<group>";
+		};
+		7A5FD7272B6988AE003EA1FE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7A5FD7282B6989B1003EA1FE /* CallForwardingView.swift */,
+				7A5FD72A2B699399003EA1FE /* MissedCallView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		7A81C0732B5FC098009947E0 = {
@@ -507,6 +521,7 @@
 				7A81C0C32B5FCDBC009947E0 /* ThemeableViewController.swift in Sources */,
 				7AC8E17A2B67D8B700F68D54 /* TransferredAmountView.swift in Sources */,
 				7A81C09F2B5FC9B2009947E0 /* TabBarViewController.swift in Sources */,
+				7A5FD7292B6989B1003EA1FE /* CallForwardingView.swift in Sources */,
 				7A10F98E2B66C93400FEF091 /* VASWorker.swift in Sources */,
 				7A81C0CC2B5FD1D3009947E0 /* ViewController+Navigation.swift in Sources */,
 				7A81C0842B5FC098009947E0 /* ViewController.swift in Sources */,
@@ -524,6 +539,7 @@
 				7A10F99D2B66CE1900FEF091 /* BalanceTransferWorker.swift in Sources */,
 				7A3E25532B68385200C95B43 /* ServiceDescriptionView.swift in Sources */,
 				7ADFF8692B6789050048A7F9 /* VASConfigurator.swift in Sources */,
+				7A5FD72B2B699399003EA1FE /* MissedCallView.swift in Sources */,
 				7ACAE4C82B68E182005C0DAC /* FreeSMSBtnView.swift in Sources */,
 				7A8023252B61B5CE00329D08 /* ProductCardCell.swift in Sources */,
 				7A10F98F2B66C93400FEF091 /* VASRouter.swift in Sources */,
