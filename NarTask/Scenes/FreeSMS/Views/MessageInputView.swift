@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class MessageInputView: UIView, UITextViewDelegate {
-    
     private lazy var containerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 16

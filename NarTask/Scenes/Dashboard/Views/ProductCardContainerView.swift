@@ -41,7 +41,7 @@ class ProductCardContainerView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 8
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fillEqually
         stackView.alignment = .fill
         return stackView
     }()
