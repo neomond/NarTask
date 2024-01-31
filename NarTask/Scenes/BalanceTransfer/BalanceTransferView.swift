@@ -31,7 +31,7 @@ final class BalanceTransferView: UIView {
         return label
     }()
     
-    private lazy var phoneNumTextField = PhoneNumberTextField()
+    private lazy var contactManagerView = ContactManagerView()
     private lazy var transferButtonView = TransferButtonView()
     private lazy var transferredAmountView = TransferredAmountView()
     private lazy var serviceDescriptionView = ServiceDescriptionView()
@@ -40,12 +40,18 @@ final class BalanceTransferView: UIView {
         self.backgroundColor = ColorStyle.serviceBgColor.load()
         addSubviews()
         addConstraints()
+        configureContactManagerView()
     }
+    
+    private func configureContactManagerView() {
+         contactManagerView.configure(withTitle: "Mobil nömrə", placeholder: "", contactImage: UIImage(named: "contacts_book")!)
+     }
+    
     
     private func addSubviews() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(phoneNumTextField)
+        contentView.addSubview(contactManagerView)
         contentView.addSubview(transferredAmountView)
         contentView.addSubview(serviceDescriptionView)
         contentView.addSubview(infoLabel)
@@ -62,7 +68,7 @@ final class BalanceTransferView: UIView {
             make.height.equalTo(scrollView).priority(.low) 
             // ::here -> contentView will be smaller than the scrollView
         }
-        phoneNumTextField.snp.makeConstraints { make in
+        contactManagerView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(16)
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(56)
@@ -78,7 +84,7 @@ final class BalanceTransferView: UIView {
         }
         transferredAmountView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(16)
-            make.top.equalTo(phoneNumTextField.snp.bottom).offset(16)
+            make.top.equalTo(contactManagerView.snp.bottom).offset(16)
         }
         serviceDescriptionView.snp.makeConstraints { make in
             make.top.equalTo(transferredAmountView.snp.bottom).offset(8)

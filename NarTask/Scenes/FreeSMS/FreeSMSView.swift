@@ -36,7 +36,7 @@ final class FreeSMSView: UIView {
     }()
     private lazy var sendBtnView = FreeSMSBtnView()
     private lazy var dailySMSLimitView = DailySMSLimitView()
-    private lazy var phoneNumTextFieldView = PhoneNumTextFieldView()
+    private lazy var contactManagerView = ContactManagerView()
     private lazy var msgInputView = MessageInputView()
     
     init() {
@@ -52,13 +52,18 @@ final class FreeSMSView: UIView {
         self.backgroundColor = ColorStyle.serviceBgColor.load()
         addSubviews()
         addConstraints()
+        configureContactManagerView()
     }
+    
+    private func configureContactManagerView() {
+         contactManagerView.configure(withTitle: "Kimə", placeholder: "", contactImage: UIImage(named: "contacts_book")!)
+     }
     
     private func addSubviews() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(messageLabel)
-        contentView.addSubview(phoneNumTextFieldView)
+        contentView.addSubview(contactManagerView)
         
         contentView.addSubview(dailySMSLimitView)
         contentView.addSubview(msgInputView)
@@ -82,13 +87,13 @@ final class FreeSMSView: UIView {
             make.top.equalTo(dailySMSLimitView.snp.bottom).offset(24)
             make.left.equalToSuperview().inset(16)
         }
-        phoneNumTextFieldView.snp.makeConstraints { make in
+        contactManagerView.snp.makeConstraints { make in
             make.top.equalTo(messageLabel.snp.bottom).offset(16)
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(56)
         }
         msgInputView.snp.makeConstraints { make in
-            make.top.equalTo(phoneNumTextFieldView.snp.bottom).offset(16)
+            make.top.equalTo(contactManagerView.snp.bottom).offset(16)
             make.left.right.equalToSuperview().inset(16)
         }
         sendBtnView.snp.makeConstraints { make in

@@ -54,14 +54,12 @@
 		7A81C0CE2B5FD699009947E0 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81C0CD2B5FD699009947E0 /* AppContainer.swift */; };
 		7A81C0D02B5FD6C2009947E0 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A81C0CF2B5FD6C2009947E0 /* AppRouter.swift */; };
 		7A9B70B22B639819008B7263 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7A9B70B12B639819008B7263 /* SnapKit */; };
-		7AC8E1762B67C84B00F68D54 /* PhoneNumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC8E1752B67C84B00F68D54 /* PhoneNumberTextField.swift */; };
 		7AC8E1782B67CE9600F68D54 /* TransferButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC8E1772B67CE9600F68D54 /* TransferButtonView.swift */; };
 		7AC8E17A2B67D8B700F68D54 /* TransferredAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC8E1792B67D8B600F68D54 /* TransferredAmountView.swift */; };
 		7ACAE4C32B68C27E005C0DAC /* Cell+Configurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACAE4C22B68C27E005C0DAC /* Cell+Configurer.swift */; };
 		7ACAE4C52B68CB58005C0DAC /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACAE4C42B68CB58005C0DAC /* Extension.swift */; };
 		7ACAE4C82B68E182005C0DAC /* FreeSMSBtnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACAE4C72B68E182005C0DAC /* FreeSMSBtnView.swift */; };
 		7ACAE4CA2B690AC0005C0DAC /* DailySMSLimitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACAE4C92B690AC0005C0DAC /* DailySMSLimitView.swift */; };
-		7ACAE4CC2B69142D005C0DAC /* PhoneNumTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACAE4CB2B69142D005C0DAC /* PhoneNumTextFieldView.swift */; };
 		7ACAE4CE2B69178F005C0DAC /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACAE4CD2B69178F005C0DAC /* MessageInputView.swift */; };
 		7ACC9C872B6A110A003A016A /* SecretNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC9C862B6A110A003A016A /* SecretNumberView.swift */; };
 		7ACC9C892B6A1CD5003A016A /* UnlimitedInternetUsageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC9C882B6A1CD5003A016A /* UnlimitedInternetUsageView.swift */; };
@@ -133,14 +131,12 @@
 		7A81C0CB2B5FD1D3009947E0 /* ViewController+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Navigation.swift"; sourceTree = "<group>"; };
 		7A81C0CD2B5FD699009947E0 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		7A81C0CF2B5FD6C2009947E0 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
-		7AC8E1752B67C84B00F68D54 /* PhoneNumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberTextField.swift; sourceTree = "<group>"; };
 		7AC8E1772B67CE9600F68D54 /* TransferButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferButtonView.swift; sourceTree = "<group>"; };
 		7AC8E1792B67D8B600F68D54 /* TransferredAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferredAmountView.swift; sourceTree = "<group>"; };
 		7ACAE4C22B68C27E005C0DAC /* Cell+Configurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cell+Configurer.swift"; sourceTree = "<group>"; };
 		7ACAE4C42B68CB58005C0DAC /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		7ACAE4C72B68E182005C0DAC /* FreeSMSBtnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeSMSBtnView.swift; sourceTree = "<group>"; };
 		7ACAE4C92B690AC0005C0DAC /* DailySMSLimitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySMSLimitView.swift; sourceTree = "<group>"; };
-		7ACAE4CB2B69142D005C0DAC /* PhoneNumTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumTextFieldView.swift; sourceTree = "<group>"; };
 		7ACAE4CD2B69178F005C0DAC /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
 		7ACC9C862B6A110A003A016A /* SecretNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretNumberView.swift; sourceTree = "<group>"; };
 		7ACC9C882B6A1CD5003A016A /* UnlimitedInternetUsageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlimitedInternetUsageView.swift; sourceTree = "<group>"; };
@@ -388,7 +384,6 @@
 		7AC8E1742B67C74400F68D54 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7AC8E1752B67C84B00F68D54 /* PhoneNumberTextField.swift */,
 				7AC8E1772B67CE9600F68D54 /* TransferButtonView.swift */,
 				7AC8E1792B67D8B600F68D54 /* TransferredAmountView.swift */,
 				7A3E25522B68385200C95B43 /* ServiceDescriptionView.swift */,
@@ -401,7 +396,6 @@
 			children = (
 				7ACAE4C72B68E182005C0DAC /* FreeSMSBtnView.swift */,
 				7ACAE4C92B690AC0005C0DAC /* DailySMSLimitView.swift */,
-				7ACAE4CB2B69142D005C0DAC /* PhoneNumTextFieldView.swift */,
 				7ACAE4CD2B69178F005C0DAC /* MessageInputView.swift */,
 			);
 			path = Views;
@@ -543,7 +537,6 @@
 				7ADFF8622B6775820048A7F9 /* FreeSMSRouter.swift in Sources */,
 				7A81C0B72B5FCCA3009947E0 /* DashboardWorker.swift in Sources */,
 				7ADFF8602B6775820048A7F9 /* FreeSMSPresenter.swift in Sources */,
-				7ACAE4CC2B69142D005C0DAC /* PhoneNumTextFieldView.swift in Sources */,
 				7ACAE4CA2B690AC0005C0DAC /* DailySMSLimitView.swift in Sources */,
 				7A10F99D2B66CE1900FEF091 /* BalanceTransferWorker.swift in Sources */,
 				7A3E25532B68385200C95B43 /* ServiceDescriptionView.swift in Sources */,
@@ -561,7 +554,6 @@
 				7ACC9C892B6A1CD5003A016A /* UnlimitedInternetUsageView.swift in Sources */,
 				7A81C0BB2B5FCCA3009947E0 /* DashboardInteractor.swift in Sources */,
 				7A81C0AB2B5FCA0C009947E0 /* TabBarConfigurator.swift in Sources */,
-				7AC8E1762B67C84B00F68D54 /* PhoneNumberTextField.swift in Sources */,
 				7AD37F9A2B624BE90068C27D /* ServicesGridView.swift in Sources */,
 				7A10F9942B66CB4C00FEF091 /* VASView.swift in Sources */,
 				7ADFF8652B6775820048A7F9 /* FreeSMSInteractor.swift in Sources */,
