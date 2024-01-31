@@ -30,23 +30,19 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        navigationController?.isNavigationBarHidden = true
         mainView.storiesCollectionView.delegate = self
         mainView.storiesCollectionView.dataSource = self
-        
         mainView.servicesGridView.delegate = self
         self.load()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Hide the navigation bar
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // Show the navigation bar when leaving the DashboardViewController
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
@@ -78,13 +74,6 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     }
 }
 
-//extension DashboardViewController: ServicesGridViewDelegate {
-//    func didSelectService(_ service: ServiceType) {
-//
-////        navigationController?.pushViewController(FreeSMSConfigurator.configure(FreeSMSViewController()), animated: true)
-//        print("service is tapped and working")
-//    }
-//}
 
 extension DashboardViewController: ServicesGridViewDelegate {
     func didSelectService(_ service: ServiceType) {
@@ -98,7 +87,6 @@ extension DashboardViewController: ServicesGridViewDelegate {
         default:
             break
         }
-        //        print("service is tapped and working")
     }
 }
 

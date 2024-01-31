@@ -11,7 +11,7 @@ class StoriesCollectionView: UICollectionView {
     // MARK: - Init
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-        
+        commonInit()
     }
     
     // Add another initializer
@@ -32,4 +32,10 @@ class StoriesCollectionView: UICollectionView {
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
+    private func commonInit() {
+           self.backgroundColor = .clear
+           self.showsHorizontalScrollIndicator = false
+           self.decelerationRate = .fast
+       }
 }

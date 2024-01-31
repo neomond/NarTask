@@ -9,7 +9,7 @@ import UIKit
 
 final class MainNavigation: UINavigationController, ThemeableViewController {
     
-    //    var theme: ThemeProvider = App.theme
+    var theme: ThemeProvider = App.theme
     
     var barTintColor: UIColor? {
         didSet {

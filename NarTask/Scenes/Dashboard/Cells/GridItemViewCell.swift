@@ -9,6 +9,16 @@ import UIKit
 import SnapKit
 
 class GridItemView: UICollectionViewCell {
+    // MARK: - Properties
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 16
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private lazy var iconContainerView: UIView = {
         let imgContainer = UIView()
         imgContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -35,18 +45,11 @@ class GridItemView: UICollectionViewCell {
         return label
     }()
     
-    // Add a public computed property or method to get the service type
-      var serviceType: ServiceType? {
-          if let title = titleLabel.text {
-              return ServiceType(rawValue: title)
-          }
-          return nil
-      }
     
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
-        setupUI()
         isUserInteractionEnabled = true
     }
     
@@ -54,49 +57,42 @@ class GridItemView: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // Add a public computed property or method to get the service type
+    var serviceType: ServiceType? {
+        if let title = titleLabel.text {
+            return ServiceType(rawValue: title)
+        }
+        return nil
+    }
+    
+    // MARK: - Setup
     private func setupViews() {
-        contentView.addSubview(iconContainerView)
+        contentView.addSubview(containerView)
+        containerView.addSubview(iconContainerView)
         iconContainerView.addSubview(iconImageView)
-        contentView.addSubview(titleLabel)
+        containerView.addSubview(titleLabel)
         
+        containerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         iconContainerView.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(12)
-            make.bottom.equalToSuperview().inset(12)
+            make.left.equalTo(containerView.snp.left).inset(12)
+            make.bottom.equalTo(containerView.snp.bottom).inset(12)
             make.height.width.equalTo(40)
         }
         
         iconImageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(8)
-           
-            // This insets the imageView from the container view, providing the padding
+            make.edges.equalTo(iconContainerView).inset(8)
         }
-        //        iconImageView.snp.makeConstraints { make in
-        //            make.centerY.equalToSuperview()
-        //            make.left.equalToSuperview().inset(12)
-        //            make.height.width.equalTo(40)
-        //        }
         
-//        titleLabel.snp.updateConstraints { make in
-//            make.left.equalTo(iconContainerView.snp.right).offset(8)
-//            make.right.equalToSuperview().inset(8)
-//            make.centerY.equalToSuperview()
-//            make.height.equalTo(iconImageView.snp.height)
-//        }
         titleLabel.snp.makeConstraints { make in
-                    make.left.equalTo(iconContainerView.snp.right).offset(8)
-                    make.centerY.equalTo(iconContainerView.snp.centerY)
-                    make.right.equalToSuperview().inset(8)
-                }
+            make.left.equalTo(iconContainerView.snp.right).offset(8)
+            make.centerY.equalTo(iconContainerView.snp.centerY)
+            make.right.equalTo(containerView.snp.right).inset(12)
+        }
     }
     
-    private func setupUI() {
-        contentView.backgroundColor = .clear
-        self.backgroundColor = .white
-        //        contentView.layer.cornerRadius = 10
-        //        contentView.layer.cornerRadius = 10
-        
-    }
     
     func configure(with serviceType: ServiceType) {
         titleLabel.text = serviceType.getTitle()

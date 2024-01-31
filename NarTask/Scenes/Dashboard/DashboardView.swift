@@ -2,6 +2,7 @@
 import UIKit
 
 class DashboardView: UIView {
+    // MARK: - Product Card Main View
     private lazy var externalView: UIView = {
         let view = UIView()
         view.backgroundColor = ColorStyle.bgColor.load()
@@ -16,7 +17,6 @@ class DashboardView: UIView {
         let view = ProductCardContainerView()
         return view
     }()
-    
     
     // MARK: - Services Grid View
     lazy var servicesGridView: ServicesGridView = {
@@ -63,7 +63,6 @@ class DashboardView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = ColorStyle.mainColor.load()
-        
         setupSubviews()
         addConstraints()
     }
@@ -75,8 +74,8 @@ class DashboardView: UIView {
     private func addConstraints() {
         externalView.snp.makeConstraints { make in
             make.width.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.8)
-            make.top.equalTo(UIScreen.main.bounds.height * 0.2)
+            make.height.equalToSuperview().multipliedBy(0.86)
+            make.top.equalTo(UIScreen.main.bounds.height * 0.14)
         }
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -94,8 +93,6 @@ class DashboardView: UIView {
         productCardContainerView.snp.makeConstraints { make in
             make.height.equalTo(100 + 24)
         }
-        
-        
     }
 }
 

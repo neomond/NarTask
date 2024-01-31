@@ -65,6 +65,7 @@
 		7ACAE4CE2B69178F005C0DAC /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACAE4CD2B69178F005C0DAC /* MessageInputView.swift */; };
 		7ACC9C872B6A110A003A016A /* SecretNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC9C862B6A110A003A016A /* SecretNumberView.swift */; };
 		7ACC9C892B6A1CD5003A016A /* UnlimitedInternetUsageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC9C882B6A1CD5003A016A /* UnlimitedInternetUsageView.swift */; };
+		7ACC9C8B2B6A7547003A016A /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC9C8A2B6A7547003A016A /* ContactManager.swift */; };
 		7AD2B57E2B60DEAB0057D956 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AD2B57D2B60DEAB0057D956 /* Assets.xcassets */; };
 		7AD2B5812B60DFB00057D956 /* AppAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2B5802B60DFB00057D956 /* AppAssets.swift */; };
 		7AD2B5832B60E7400057D956 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2B5822B60E7400057D956 /* Colors.swift */; };
@@ -143,6 +144,7 @@
 		7ACAE4CD2B69178F005C0DAC /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
 		7ACC9C862B6A110A003A016A /* SecretNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretNumberView.swift; sourceTree = "<group>"; };
 		7ACC9C882B6A1CD5003A016A /* UnlimitedInternetUsageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlimitedInternetUsageView.swift; sourceTree = "<group>"; };
+		7ACC9C8A2B6A7547003A016A /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
 		7AD2B57D2B60DEAB0057D956 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7AD2B5802B60DFB00057D956 /* AppAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssets.swift; sourceTree = "<group>"; };
 		7AD2B5822B60E7400057D956 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 		7A81C0962B5FC360009947E0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7ACC9C8A2B6A7547003A016A /* ContactManager.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				7A10F9A32B676B2900FEF091 /* BalanceTransferView.swift in Sources */,
 				7A81C0A92B5FC9E2009947E0 /* TabBarInteractor.swift in Sources */,
 				7A81C0B62B5FCCA3009947E0 /* DashboardPresenter.swift in Sources */,
+				7ACC9C8B2B6A7547003A016A /* ContactManager.swift in Sources */,
 				7A81C0BA2B5FCCA3009947E0 /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

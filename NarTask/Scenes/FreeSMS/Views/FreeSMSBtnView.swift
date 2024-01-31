@@ -10,8 +10,6 @@ import UIKit
 import SnapKit
 
 class FreeSMSBtnView: UIView {
-    
-    
     // MARK: - Properties
     private let sendBtn: UIButton = {
         let button = UIButton(type: .system)

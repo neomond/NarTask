@@ -17,7 +17,7 @@ enum ServiceType: String, CaseIterable {
     case favouriteNumber = "Favourite number"
     case balanceTransfer = "Balance transfer"
     case cevirOffer = "'Çevir' offer"
-    case servicesAbroad = "Əlava dayar xidmətləri"
+    case servicesAbroad = "Əlavə dəyər xidmətləri"
     case roaming = "Roaming"
     
     func getTitle() -> String {

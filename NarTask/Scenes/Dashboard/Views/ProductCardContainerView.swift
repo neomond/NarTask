@@ -16,6 +16,7 @@ extension ProductType {
     func getTitle() -> String {
         return self.rawValue
     }
+    
     func getImage() -> UIImage? {
         switch self {
         case .tariff:

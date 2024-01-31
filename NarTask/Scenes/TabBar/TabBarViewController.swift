@@ -11,11 +11,10 @@ import UIKit
 protocol TabBarDisplayLogic: AnyObject {
 }
 
-final class TabBarController: UITabBarController
-//                                ThemeableViewController
+final class TabBarController: UITabBarController, ThemeableViewController
 {
     
-    //    var theme: ThemeProvider = App.theme
+    var theme: ThemeProvider = App.theme
     
     var interactor: TabBarBusinessLogic?
     var router: (NSObjectProtocol & TabBarRoutingLogic & TabBarDataPassing)?
@@ -59,7 +58,8 @@ final class TabBarController: UITabBarController
         dashboardView.tabBarItem.isEnabled = false
         
         
-        let supportView = UIViewController()
+        let supportVC = DashboardViewController()
+        let supportView = MainNavigation(rootViewController: DashboardConfigurator.configure(supportVC))
         supportView.tabBarItem = UITabBarItem(title: "Dəstək", image: AppAssets.support.load(), tag: 2)
         
         
@@ -106,7 +106,6 @@ final class TabBarController: UITabBarController
     }
     
     
-    
     private func setupMiddleButton() {
         middleButton.frame = CGRect(x: (view.bounds.width / 2) - 30, y: -20 + 10, width: 56, height: 56)
         
@@ -117,18 +116,14 @@ final class TabBarController: UITabBarController
         middleButton.layer.shadowOpacity = 0.2
         middleButton.layer.shadowOffset = CGSize(width: 4, height: 4)
         
-        middleButton.addTarget(self, action: #selector(middleButtonAction), for: .touchUpInside)
+     
         tabBar.addSubview(middleButton)
         middleButton.layer.zPosition = 1
         tabBar.bringSubviewToFront(middleButton)
         middleButton.setImage(AppAssets.program.load()?.resized(to: CGSize(width: 24, height: 24)), for: .normal)
         middleButton.imageView?.contentMode = .scaleAspectFit
     }
-    
-    @objc private func middleButtonAction() {
-        let dashboardVC = DashboardViewController()
-        self.present(dashboardVC, animated: true, completion: nil)
-    }
+
     
     private func setupCustomTabBar() {
         let path = getPathForTabBar()

@@ -56,7 +56,6 @@ class ProductCardCell: UICollectionViewCell {
         contentView.addSubview(containerView)
         containerView.addSubview(titleLabel)
         containerView.addSubview(imageView)
-        
     }
     
     
@@ -69,7 +68,7 @@ class ProductCardCell: UICollectionViewCell {
         titleLabel.snp.updateConstraints { make in
             make.top.equalTo(containerView.snp.top).offset(12)
             make.right.equalTo(imageView.snp.left).offset(-8)
-            make.left.equalTo(containerView.snp.left).offset(8)
+            make.left.equalTo(containerView.snp.left).offset(12)
         }
         imageView.snp.updateConstraints { make in
             make.centerY.equalTo(containerView.snp.centerY)
@@ -77,9 +76,4 @@ class ProductCardCell: UICollectionViewCell {
             make.height.width.equalTo(80)
         }
     }
-    
-    
-    
-    
-    
 }

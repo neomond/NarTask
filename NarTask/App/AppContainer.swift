@@ -16,6 +16,6 @@ final class AppContainer {
     let router = AppRouter()
     
 //    let service = Service()
-//
-//    let theme = AppTheme()
+
+    let theme = AppTheme()
 }
