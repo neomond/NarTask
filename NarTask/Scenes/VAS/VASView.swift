@@ -23,6 +23,8 @@ final class VASView: UIView {
     
     private lazy var callForwardView = CallForwardingView()
     private lazy var missedCallView = MissedCallView()
+    private lazy var secretNumberView = SecretNumberView()
+    private lazy var unlimitedInternetUsageView = UnlimitedInternetUsageView()
     
     init() {
         super.init(frame: .zero)
@@ -53,7 +55,8 @@ final class VASView: UIView {
         scrollView.addSubview(contentView)
         contentView.addSubview(callForwardView)
         contentView.addSubview(missedCallView)
-        
+        contentView.addSubview(secretNumberView)
+        contentView.addSubview(unlimitedInternetUsageView)
     }
 
     private func addConstraints() {
@@ -74,8 +77,13 @@ final class VASView: UIView {
             make.top.equalTo(callForwardView.snp.bottom).offset(8)
             make.left.right.equalToSuperview().inset(16)
         }
-        
+        secretNumberView.snp.makeConstraints { make in
+            make.top.equalTo(missedCallView.snp.bottom).offset(8)
+            make.left.right.equalToSuperview().inset(16)
+        }
+        unlimitedInternetUsageView.snp.makeConstraints { make in
+            make.top.equalTo(secretNumberView.snp.bottom).offset(8)
+            make.left.right.equalToSuperview().inset(16)
+        }
     }
-    
-    
 }

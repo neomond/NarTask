@@ -21,26 +21,34 @@ class MissedCallView: UIView {
         let label = UILabel()
         label.text = "Sizə zəng etməyə çalışanları şəbəkəyə qayıtmağınız barədə məlumatlandırın."
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = .gray
+        label.textColor = ColorStyle.dataLabel.load()
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var subscriptionInfoLabel: UILabel = {
         let label = UILabel()
-        let fullText = "30 günlük / 0,10 ₼"
-        let attributedString = NSMutableAttributedString(string: fullText)
-
-        if let range = fullText.range(of: "/ 0,10 ₼") {
-               attributedString.addAttribute(.foregroundColor, value: UIColor.gray, range: NSRange(range, in: fullText))
-           }
+        let mainText = "30 günlük "
+        let grayText = "/ 0,10 ₼"
+        let mainTextAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.boldSystemFont(ofSize: 18),
+            .foregroundColor: UIColor.black
+        ]
+        
+        let grayTextAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 16),
+            .foregroundColor: ColorStyle.labelColor.load() as Any
+        ]
+        let attributedString = NSMutableAttributedString(string: mainText, attributes: mainTextAttributes)
+        let grayAttributedString = NSAttributedString(string: grayText, attributes: grayTextAttributes)
+        
+        attributedString.append(grayAttributedString)
         
         label.attributedText = attributedString
         
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = .black
         return label
     }()
+    
     
     private lazy var serviceSwitch: UISwitch = {
         let switchControl = UISwitch()
@@ -73,11 +81,7 @@ class MissedCallView: UIView {
         paragraphStyle.lineSpacing = 4
         let attributedString = NSMutableAttributedString(
             string: "Sizə zəng etməyə çalışanları şəbəkə qayıtmağınız barədə məlumatlandırın.",
-            attributes: [
-                .font: UIFont.systemFont(ofSize: 14),
-                .foregroundColor: UIColor.gray,
-                .paragraphStyle: paragraphStyle
-            ]
+            attributes: [ .paragraphStyle: paragraphStyle ]
         )
         infoLabel.attributedText = attributedString
     }
@@ -103,7 +107,7 @@ class MissedCallView: UIView {
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
-         
+            
         }
     }
     

@@ -1,17 +1,17 @@
 //
-//  CallForwardingView.swift
+//  UnlimitedInternetUsageView.swift
 //  NarTask
 //
-//  Created by Nazrin Atayeva on 30.01.24.
+//  Created by Nazrin Atayeva on 31.01.24.
 //
 
 import UIKit
 import SnapKit
 
-class CallForwardingView: UIView {
+class UnlimitedInternetUsageView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Zənglərin yönləndirilməsi"
+        label.text = "Paketsiz internet istifadəsi"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .black
         return label
@@ -56,8 +56,8 @@ class CallForwardingView: UIView {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
         let attributedString = NSMutableAttributedString(
-            string: "Daxil olan zəngləri digər nömrəyə yönləndir. Hesablama cari tarifə uyğun aparılacaq. Zənglərin yönləndirilməsi aktivdirsə. Buraxılmış zəng xidməti çalışmır.",
-            attributes: [ .paragraphStyle: paragraphStyle ]
+            string: "İstifadə edilən trafikə görə balansdan ödə",
+            attributes: [.paragraphStyle: paragraphStyle]
         )
         descriptionLabel.attributedText = attributedString
     }
@@ -76,7 +76,7 @@ class CallForwardingView: UIView {
         descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.left.equalToSuperview().offset(16)
-            make.right.equalToSuperview().inset(80)
+            make.right.equalToSuperview().inset(140)
             make.bottom.equalToSuperview().offset(-16)
         }
     }
