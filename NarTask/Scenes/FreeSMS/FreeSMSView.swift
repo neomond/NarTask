@@ -56,8 +56,9 @@ final class FreeSMSView: UIView {
     }
     
     private func configureContactManagerView() {
-         contactManagerView.configure(withTitle: "Kimə", placeholder: "", contactImage: UIImage(named: "contacts_book")!)
-     }
+        contactManagerView.configure(withTitle: "Kimə", placeholder: "", contactImage: UIImage(named: "contacts_book")!)
+        contactManagerView.delegate = self
+    }
     
     private func addSubviews() {
         addSubview(scrollView)
@@ -69,6 +70,8 @@ final class FreeSMSView: UIView {
         contentView.addSubview(msgInputView)
         contentView.addSubview(sendBtnView)
     }
+    
+    
     
     private func addConstraints() {
         scrollView.snp.makeConstraints { make in
@@ -104,14 +107,20 @@ final class FreeSMSView: UIView {
         
     }
     
+    
     override func updateConstraints() {
         super.updateConstraints()
     }
     
+}
+
+extension FreeSMSView: ContactManagerViewDelegate {
+    func didTapContactsButton() {
+    }
     
+    func didEndEditingPhoneNumber(with number: String?) {
+    }
     
-    
-    
-    
-    
+    func didValidatePhoneNumber(isValid: Bool) {
+    }
 }

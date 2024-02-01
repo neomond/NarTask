@@ -22,6 +22,7 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic {
     var router: (NSObjectProtocol & DashboardRoutingLogic & DashboardDataPassing)?
     var mainView: DashboardView!
     
+    var watchedStories = [Bool](repeating: false, count: 10)
     
     override func loadView() {
         super.loadView()
@@ -59,19 +60,37 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic {
 extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionView == mainView.storiesCollectionView ? 10 : 0
-        
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard collectionView == mainView.storiesCollectionView,
-              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCircleCell.reuseIdentifier, for: indexPath) as? StoryCircleCell else {
-            return UICollectionViewCell()
+    // ::here ->  add story as the current window
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            print("Story at index \(indexPath.item) was tapped.")
+            
+            let storyView = StoryView(frame: UIScreen.main.bounds)
+            storyView.configure(with: UIImage(named: "StoryImage")!, completion: {
+            // ::here -> mark the story as watched when StoryView is closed
+                self.watchedStories[indexPath.item] = true
+                collectionView.reloadItems(at: [indexPath])
+            // ::here -> reload the cell to update its appearance
+            })
+            storyView.startStory()
+            
+            if let currentWindow = view.window {
+                currentWindow.addSubview(storyView)
+            }
         }
-        
-        cell.imageView.image = UIImage(named: "StoryImage")
-        return cell
-        
-    }
+
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            guard collectionView == mainView.storiesCollectionView,
+                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCircleCell.reuseIdentifier, for: indexPath) as? StoryCircleCell else {
+                return UICollectionViewCell()
+            }
+            
+            cell.imageView.image = UIImage(named: "StoryImage")
+            cell.setWatched(watchedStories[indexPath.item])
+            return cell
+        }
 }
 
 

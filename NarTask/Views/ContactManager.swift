@@ -8,7 +8,18 @@
 import UIKit
 import SnapKit
 
+
+protocol ContactManagerViewDelegate: AnyObject {
+    func didTapContactsButton()
+    func didEndEditingPhoneNumber(with number: String?)
+    func didValidatePhoneNumber(isValid: Bool)
+}
+
 class ContactManagerView: UIView, UITextFieldDelegate {
+    weak var delegate: ContactManagerViewDelegate?
+
+    private let phoneNumberValidator = PhoneNumberValidator()
+    
     // MARK: - Subviews
     private let container: UIView = {
         let view = UIView()
@@ -50,6 +61,7 @@ class ContactManagerView: UIView, UITextFieldDelegate {
         return textField
     }()
     
+    
     // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,8 +81,39 @@ class ContactManagerView: UIView, UITextFieldDelegate {
         container.addSubview(contactsButton)
         container.addSubview(inputTextField)
         
+        inputTextField.delegate = self
+        validatePhoneNumber(inputTextField.text)
+        
         setupConstraints()
         addActionHandlers()
+    }
+    
+    private func validatePhoneNumber(_ number: String?) {
+        guard let number = number, !number.isEmpty else {
+            resetTextFieldAppearance()
+            delegate?.didValidatePhoneNumber(isValid: false)
+            return
+        }
+
+        let isValid = phoneNumberValidator.isValidPhoneNumber(number)
+        if isValid {
+            setTextFieldAppearance(isValid: true)
+        } else {
+            setTextFieldAppearance(isValid: false)
+        }
+        delegate?.didValidatePhoneNumber(isValid: isValid)
+    }
+    
+    // MARK: - UI Update Methods
+    private func setTextFieldAppearance(isValid: Bool) {
+        if isValid {
+            print("valid")
+        } else {
+            print("not valid")
+        }
+    }
+    
+    private func resetTextFieldAppearance() {
     }
     
     // MARK: - Constraints
@@ -107,16 +150,21 @@ class ContactManagerView: UIView, UITextFieldDelegate {
     }
     
     @objc private func contactsButtonTapped() {
-        // logic to be continued
+        delegate?.didTapContactsButton()
     }
     
     // MARK: - UITextFieldDelegate Methods
     func textFieldDidBeginEditing(_ textField: UITextField) {
-//        titleLabel.isHidden = true
+        //        titleLabel.isHidden = true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         titleLabel.isHidden = textField.text?.isEmpty ?? true
+        validatePhoneNumber(textField.text)
+        if let phoneNumber = textField.text, !phoneNumber.isEmpty {
+            print("Entered Phone Number: \(phoneNumber)")
+            delegate?.didEndEditingPhoneNumber(with: phoneNumber)
+        }
     }
     
     // MARK: - Configuration

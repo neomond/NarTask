@@ -41,6 +41,10 @@ class StoryCircleCell: UICollectionViewCell {
         super.init(coder: aDecoder)
         setupViews()
     }
+    
+    func setWatched(_ watched: Bool) {
+        container.layer.borderColor = watched ? ColorStyle.labelColor.load()?.cgColor : ColorStyle.mainColor.load()?.cgColor
+        }
 
     private func setupViews() {
             addSubview(container)

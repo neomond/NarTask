@@ -9,6 +9,22 @@ import UIKit
 import SnapKit
 
 class MessageInputView: UIView, UITextViewDelegate {
+    private let maxCharactersPerSMS = 10
+    private let maxSMSSegments = 2
+    
+    
+    private var currentCharacterCount = 0 {
+        didSet {
+            characterCountLabel.text = "\(currentCharacterCount)"
+        }
+    }
+    
+    private var currentSMSSegmentCount = 1 {
+        didSet {
+            smsCounterLabel.text = "SMS sayı: \(currentSMSSegmentCount)/\(maxSMSSegments)"
+        }
+    }
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 16
@@ -51,6 +67,8 @@ class MessageInputView: UIView, UITextViewDelegate {
         label.textAlignment = .right
         return label
     }()
+    
+    
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -101,10 +119,10 @@ class MessageInputView: UIView, UITextViewDelegate {
     // MARK: - UITextViewDelegate Methods
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
-        // Update character count label
         characterCountLabel.text = "\(textView.text.count)"
+        validateMessage()
+        print("Entered Message: \(textView.text ?? "")")
     }
-    
     func textViewDidBeginEditing(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
     }
@@ -113,5 +131,24 @@ class MessageInputView: UIView, UITextViewDelegate {
         placeholderLabel.isHidden = !textView.text.isEmpty
     }
     
+    
+    // MARK: - Validation
+    private func validateMessage() {
+        let text = textView.text ?? ""
+        currentCharacterCount = text.count
+        currentSMSSegmentCount = (currentCharacterCount / maxCharactersPerSMS) + (currentCharacterCount % maxCharactersPerSMS > 0 ? 1 : 0)
+        
+        if currentSMSSegmentCount > maxSMSSegments || currentCharacterCount > maxCharactersPerSMS * maxSMSSegments {
+            characterCountLabel.textColor = .red
+            smsCounterLabel.textColor = .red
+        } else {
+            characterCountLabel.textColor = .lightGray
+            smsCounterLabel.textColor = .lightGray
+        }
+    }
+    
+    
 }
+
+
 

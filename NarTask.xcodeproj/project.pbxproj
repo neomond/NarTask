@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A043B122B6B835F00A2B65A /* PhoneNumberValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A043B112B6B835F00A2B65A /* PhoneNumberValidator.swift */; };
 		7A10F9802B63CD4E00FEF091 /* FreeSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A10F97A2B63CD4E00FEF091 /* FreeSMSViewController.swift */; };
 		7A10F9832B63D88700FEF091 /* StoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A10F9822B63D88700FEF091 /* StoriesCollectionView.swift */; };
 		7A10F98D2B66C93400FEF091 /* VASPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A10F9872B66C93400FEF091 /* VASPresenter.swift */; };
@@ -23,6 +24,7 @@
 		7A10F9A02B66CE1900FEF091 /* BalanceTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A10F99A2B66CE1900FEF091 /* BalanceTransferViewController.swift */; };
 		7A10F9A12B66CE1900FEF091 /* BalanceTransferInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A10F99B2B66CE1900FEF091 /* BalanceTransferInteractor.swift */; };
 		7A10F9A32B676B2900FEF091 /* BalanceTransferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A10F9A22B676B2900FEF091 /* BalanceTransferView.swift */; };
+		7A1CFA0B2B6B01A000E61E4C /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1CFA0A2B6B01A000E61E4C /* StoryView.swift */; };
 		7A3E25532B68385200C95B43 /* ServiceDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3E25522B68385200C95B43 /* ServiceDescriptionView.swift */; };
 		7A5FD7292B6989B1003EA1FE /* CallForwardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5FD7282B6989B1003EA1FE /* CallForwardingView.swift */; };
 		7A5FD72B2B699399003EA1FE /* MissedCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5FD72A2B699399003EA1FE /* MissedCallView.swift */; };
@@ -83,6 +85,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7A043B112B6B835F00A2B65A /* PhoneNumberValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberValidator.swift; sourceTree = "<group>"; };
 		7A10F97A2B63CD4E00FEF091 /* FreeSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeSMSViewController.swift; sourceTree = "<group>"; };
 		7A10F9822B63D88700FEF091 /* StoriesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCollectionView.swift; sourceTree = "<group>"; };
 		7A10F9872B66C93400FEF091 /* VASPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VASPresenter.swift; sourceTree = "<group>"; };
@@ -99,6 +102,7 @@
 		7A10F99A2B66CE1900FEF091 /* BalanceTransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTransferViewController.swift; sourceTree = "<group>"; };
 		7A10F99B2B66CE1900FEF091 /* BalanceTransferInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTransferInteractor.swift; sourceTree = "<group>"; };
 		7A10F9A22B676B2900FEF091 /* BalanceTransferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTransferView.swift; sourceTree = "<group>"; };
+		7A1CFA0A2B6B01A000E61E4C /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		7A3E25522B68385200C95B43 /* ServiceDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDescriptionView.swift; sourceTree = "<group>"; };
 		7A5FD7282B6989B1003EA1FE /* CallForwardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallForwardingView.swift; sourceTree = "<group>"; };
 		7A5FD72A2B699399003EA1FE /* MissedCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedCallView.swift; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 			children = (
 				7ACAE4C22B68C27E005C0DAC /* Cell+Configurer.swift */,
 				7ACAE4C42B68CB58005C0DAC /* Extension.swift */,
+				7A043B112B6B835F00A2B65A /* PhoneNumberValidator.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 				7A8023262B61BB6D00329D08 /* ProductCardContainerView.swift */,
 				7AD37F992B624BE90068C27D /* ServicesGridView.swift */,
 				7A10F9822B63D88700FEF091 /* StoriesCollectionView.swift */,
+				7A1CFA0A2B6B01A000E61E4C /* StoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -554,8 +560,10 @@
 				7ACC9C892B6A1CD5003A016A /* UnlimitedInternetUsageView.swift in Sources */,
 				7A81C0BB2B5FCCA3009947E0 /* DashboardInteractor.swift in Sources */,
 				7A81C0AB2B5FCA0C009947E0 /* TabBarConfigurator.swift in Sources */,
+				7A1CFA0B2B6B01A000E61E4C /* StoryView.swift in Sources */,
 				7AD37F9A2B624BE90068C27D /* ServicesGridView.swift in Sources */,
 				7A10F9942B66CB4C00FEF091 /* VASView.swift in Sources */,
+				7A043B122B6B835F00A2B65A /* PhoneNumberValidator.swift in Sources */,
 				7ADFF8652B6775820048A7F9 /* FreeSMSInteractor.swift in Sources */,
 				7A81C0BF2B5FCCDC009947E0 /* DashboardConfigurator.swift in Sources */,
 				7A8023272B61BB6D00329D08 /* ProductCardContainerView.swift in Sources */,

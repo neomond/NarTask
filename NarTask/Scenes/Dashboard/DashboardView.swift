@@ -1,7 +1,7 @@
 
 import UIKit
 
-class DashboardView: UIView {
+class DashboardView: UIView, UICollectionViewDelegate {
     // MARK: - Product Card Main View
     private lazy var externalView: UIView = {
         let view = UIView()
@@ -50,6 +50,7 @@ class DashboardView: UIView {
         return view
     }()
     
+
     private func setupSubviews() {
         stackView.addArrangedSubview(storiesCollectionView)
         stackView.addArrangedSubview(productCardContainerView)
@@ -58,7 +59,12 @@ class DashboardView: UIView {
         scrollView.addSubview(containerView)
         externalView.addSubview(scrollView)
         self.addSubview(externalView)
+        
+        // ::here -> detect tap on story
+//        storiesCollectionView.delegate = self
+
     }
+    
   
     override init(frame: CGRect) {
         super.init(frame: frame)
