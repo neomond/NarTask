@@ -2,6 +2,7 @@ import UIKit
 import SnapKit
 
 class StoryView: UIView {
+    // MARK: - Subviews
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -18,11 +19,14 @@ class StoryView: UIView {
         return progressBar
     }()
     
+    // MARK: - Properties
     var timer: Timer?
     var currentIndex: Int = 0
     var totalStories: Int = 10
     var onStoryClosed: (() -> Void)?
     
+    
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -34,6 +38,7 @@ class StoryView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - View Setup
     private func setupView() {
         addSubview(imageView)
         addSubview(progressBar)
@@ -57,6 +62,8 @@ class StoryView: UIView {
         addGestureRecognizer(longPressGesture)
     }
     
+    
+    // MARK: - Gesture Recognizers
     @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
         switch gesture.state {
         case .began:
@@ -68,6 +75,7 @@ class StoryView: UIView {
         }
     }
     
+    // MARK: - Story Progress Management
      func startStory() {
          progressBar.progress = 0.0
          timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(updateProgressBar), userInfo: nil, repeats: true)
@@ -102,9 +110,15 @@ class StoryView: UIView {
              loadStory(atIndex: currentIndex)
          }
      }
+    
+    func closeStoryView() {
+        timer?.invalidate()
+        removeFromSuperview()
+        onStoryClosed?()
+    }
    
     
-    
+    // MARK: - User Interaction Handlers
     @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
         timer?.invalidate()
         if gesture.direction == .left {
@@ -113,11 +127,6 @@ class StoryView: UIView {
             showPreviousStory()
         }
     }
-    
-    
-
-    
-   
     
     @objc func centerAreaTapped() {
         closeStoryView()
@@ -130,17 +139,9 @@ class StoryView: UIView {
         }
     }
     
-    //    func closeStoryView() {
-    //        timer?.invalidate()
-    //        removeFromSuperview()
-    //    }
+  
     
-    func closeStoryView() {
-        timer?.invalidate()
-        removeFromSuperview()
-        onStoryClosed?()
-    }
-    
+    // MARK: - Layout Constraints
     private func setupConstraints() {
         imageView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -154,7 +155,7 @@ class StoryView: UIView {
         }
     }
     
-    
+    // MARK: - Configuration
     func configure(with image: UIImage, completion: @escaping () -> Void) {
         imageView.image = image
         self.onStoryClosed = completion

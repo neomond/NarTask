@@ -8,14 +8,16 @@
 import Foundation
 
 struct PhoneNumberValidator {
-    private let validLength = 11
+    private let validLengthWithoutCountryCode = 9
+    private let countryCode = "+994"
 
     func isValidPhoneNumber(_ number: String) -> Bool {
-        return hasValidLength(number)
-    }
-
-    private func hasValidLength(_ number: String) -> Bool {
-        let digitsOnly = number.filter { $0.isNumber }
-        return digitsOnly.count == validLength
-    }
+         let digitsOnly = number.filter { $0.isNumber }
+         if number.hasPrefix(countryCode) {
+             return digitsOnly.count == validLengthWithoutCountryCode + countryCode.filter { $0.isNumber }.count
+         } else {
+             return digitsOnly.count == validLengthWithoutCountryCode
+         }
+     }
+    
 }

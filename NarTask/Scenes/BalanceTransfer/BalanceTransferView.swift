@@ -32,6 +32,7 @@ final class BalanceTransferView: UIView {
     }()
     
     private lazy var contactManagerView = ContactManagerView()
+    
     private lazy var transferButtonView = TransferButtonView()
     private lazy var transferredAmountView = TransferredAmountView()
     private lazy var serviceDescriptionView = ServiceDescriptionView()
@@ -45,6 +46,7 @@ final class BalanceTransferView: UIView {
     
     private func configureContactManagerView() {
          contactManagerView.configure(withTitle: "Mobil nömrə", placeholder: "", contactImage: UIImage(named: "contacts_book")!)
+        
      }
     
     

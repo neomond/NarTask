@@ -8,6 +8,9 @@
 import UIKit
 import SnapKit
 
+import Contacts
+import ContactsUI
+
 
 protocol ContactManagerViewDelegate: AnyObject {
     func didTapContactsButton()
@@ -15,9 +18,18 @@ protocol ContactManagerViewDelegate: AnyObject {
     func didValidatePhoneNumber(isValid: Bool)
 }
 
+extension ContactManagerView: CNContactPickerDelegate {
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+        let phoneNumber = contact.phoneNumbers.first?.value.stringValue ?? ""
+        inputTextField.text = phoneNumber
+        validatePhoneNumber(phoneNumber)
+    }
+}
+
 class ContactManagerView: UIView, UITextFieldDelegate {
     weak var delegate: ContactManagerViewDelegate?
-
+    weak var presentingViewController: UIViewController?
+    
     private let phoneNumberValidator = PhoneNumberValidator()
     
     // MARK: - Subviews
@@ -58,8 +70,24 @@ class ContactManagerView: UIView, UITextFieldDelegate {
         textField.keyboardType = .phonePad
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.delegate = self
+        textField.textColor = ColorStyle.black.load()
         return textField
     }()
+    
+    
+    // MARK: - Request Access
+    private func requestContactAccess() {
+        let store = CNContactStore()
+        store.requestAccess(for: .contacts) { granted, error in
+            if granted {
+                print("Access to contacts granted")
+                
+            } else {
+                print("Access to contacts denied")
+                
+            }
+        }
+    }
     
     
     // MARK: - Initialization
@@ -94,7 +122,7 @@ class ContactManagerView: UIView, UITextFieldDelegate {
             delegate?.didValidatePhoneNumber(isValid: false)
             return
         }
-
+        
         let isValid = phoneNumberValidator.isValidPhoneNumber(number)
         if isValid {
             setTextFieldAppearance(isValid: true)
@@ -150,8 +178,16 @@ class ContactManagerView: UIView, UITextFieldDelegate {
     }
     
     @objc private func contactsButtonTapped() {
-        delegate?.didTapContactsButton()
+        let contactPicker = CNContactPickerViewController()
+        contactPicker.delegate = self
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootViewController = windowScene.windows.first?.rootViewController {
+            rootViewController.present(contactPicker, animated: true)
+        }
+        presentingViewController?.present(contactPicker, animated: true)
     }
+    
     
     // MARK: - UITextFieldDelegate Methods
     func textFieldDidBeginEditing(_ textField: UITextField) {
