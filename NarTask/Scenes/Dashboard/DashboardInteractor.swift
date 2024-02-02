@@ -14,7 +14,7 @@ import UIKit
 
 protocol DashboardBusinessLogic
 {
-  func doSomething(request: Dashboard.Something.Request)
+  func fetchStories(request: Dashboard.Something.Request)
 }
 
 protocol DashboardDataStore
@@ -30,12 +30,14 @@ class DashboardInteractor: DashboardBusinessLogic, DashboardDataStore
   
   // MARK: Do something
   
-  func doSomething(request: Dashboard.Something.Request)
+  func fetchStories(request: Dashboard.Something.Request)
   {
     worker = DashboardWorker()
-    worker?.doSomeWork()
+      worker?.fetchStories(completion: { stories in
+          let response = Dashboard.Something.Response(stories: stories)
+          self.presenter?.presentStories(response: response)
+      })
     
-    let response = Dashboard.Something.Response()
-    presenter?.presentSomething(response: response)
+  
   }
 }

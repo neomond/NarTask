@@ -14,7 +14,7 @@ import UIKit
 
 protocol DashboardPresentationLogic
 {
-  func presentSomething(response: Dashboard.Something.Response)
+  func presentStories(response: Dashboard.Something.Response)
 }
 
 class DashboardPresenter: DashboardPresentationLogic
@@ -23,9 +23,14 @@ class DashboardPresenter: DashboardPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: Dashboard.Something.Response)
+  func presentStories(response: Dashboard.Something.Response)
   {
-    let viewModel = Dashboard.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+      var storyModels: [StoryModel] = []
+      for storyResponse in response.stories.stories {
+          storyModels.append(StoryModel(image: storyResponse.image))
+      }
+      
+    let viewModel = Dashboard.Something.ViewModel(stories: storyModels)
+    viewController?.displayStories(viewModel: viewModel)
   }
 }

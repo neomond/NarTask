@@ -14,7 +14,8 @@ class StoryView: UIView {
     private lazy var progressBar: UIProgressView = {
         let progressBar = UIProgressView(progressViewStyle: .bar)
         progressBar.translatesAutoresizingMaskIntoConstraints = false
-        progressBar.trackTintColor = ColorStyle.graySecondary.load()
+        //        progressBar.trackTintColor = ColorStyle.darkGrayLabelColor.load()
+        progressBar.trackTintColor = .gray
         progressBar.tintColor = ColorStyle.mainColor.load()
         return progressBar
     }()
@@ -22,16 +23,20 @@ class StoryView: UIView {
     // MARK: - Properties
     var timer: Timer?
     var currentIndex: Int = 0
-    var totalStories: Int = 10
+    
     var onStoryClosed: (() -> Void)?
+    
+    let stories: [StoryModel]
     
     
     // MARK: - Initialization
-    override init(frame: CGRect) {
+    init(frame: CGRect, stories:  [StoryModel]) {
+        self.stories = stories
         super.init(frame: frame)
-        setupView()
-        setupGestureRecognizers()
-        setupConstraints()
+        self.setupView()
+        self.setupGestureRecognizers()
+        self.setupConstraints()
+        //        self.startStory()
     }
     
     required init?(coder: NSCoder) {
@@ -40,8 +45,8 @@ class StoryView: UIView {
     
     // MARK: - View Setup
     private func setupView() {
-        addSubview(imageView)
-        addSubview(progressBar)
+        self.addSubview(self.imageView)
+        self.addSubview(self.progressBar)
     }
     
     private func setupGestureRecognizers() {
@@ -77,9 +82,12 @@ class StoryView: UIView {
     
     // MARK: - Story Progress Management
     func loadStory(atIndex index: Int) {
-        startStory()
+        
+        self.imageView.image = stories[index].image
         print(index)
+        self.startStory()
     }
+    
     
     
     func startStory() {
@@ -99,9 +107,10 @@ class StoryView: UIView {
     }
     
     func showNextStory() {
-        if currentIndex < totalStories - 1 {
+        if currentIndex < self.stories.count - 1 {
             currentIndex += 1
             loadStory(atIndex: currentIndex)
+            
         } else {
             closeStoryView()
         }
@@ -164,5 +173,4 @@ class StoryView: UIView {
         self.onStoryClosed = completion
     }
 }
-
 

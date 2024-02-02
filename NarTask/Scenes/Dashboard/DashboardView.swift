@@ -61,8 +61,7 @@ class DashboardView: UIView, UICollectionViewDelegate {
         self.addSubview(externalView)
         
         // ::here -> detect tap on story
-//        storiesCollectionView.delegate = self
-
+        storiesCollectionView.delegate = self
     }
     
   

@@ -14,7 +14,7 @@ import UIKit
 import SnapKit
 
 protocol DashboardDisplayLogic: AnyObject {
-    func displaySomething(viewModel: Dashboard.Something.ViewModel)
+    func displayStories(viewModel: Dashboard.Something.ViewModel)
 }
 
 class DashboardViewController: UIViewController, DashboardDisplayLogic {
@@ -22,7 +22,8 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic {
     var router: (NSObjectProtocol & DashboardRoutingLogic & DashboardDataPassing)?
     var mainView: DashboardView!
     
-    var watchedStories = [Bool](repeating: false, count: 10)
+    var stories: [StoryModel] = [
+    ]
     
     override func loadView() {
         super.loadView()
@@ -49,64 +50,70 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic {
     
     func load() {
         let request = Dashboard.Something.Request()
-        interactor?.doSomething(request: request)
+        interactor?.fetchStories(request: request)
     }
     
-    func displaySomething(viewModel: Dashboard.Something.ViewModel) {
+    func displayStories(viewModel: Dashboard.Something.ViewModel) {
+        self.stories = viewModel.stories
         //nameTextField.text = viewModel.name
     }
 }
 
 extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView == mainView.storiesCollectionView ? 10 : 0
+        return collectionView == mainView.storiesCollectionView ? stories.count : 0
     }
     
     // ::here ->  add story as the current window
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            print("Story at index \(indexPath.item) was tapped.")
-            
-            let storyView = StoryView(frame: UIScreen.main.bounds)
-            storyView.configure(with: UIImage(named: "StoryImage")!, completion: {
-            // ::here -> mark the story as watched when StoryView is closed
-                self.watchedStories[indexPath.item] = true
+        collectionView.deselectItem(at: indexPath, animated: true)
+        if collectionView == mainView.storiesCollectionView {
+            let storyView = StoryView(frame: UIScreen.main.bounds, stories: stories)
+            storyView.configure(with: stories[indexPath.row].image, completion: {
+                // ::here -> mark the story as watched when StoryView is closed
+                self.stories[indexPath.row].isSeen = true
                 collectionView.reloadItems(at: [indexPath])
-            // ::here -> reload the cell to update its appearance
+                // ::here -> reload the cell to update its appearance
             })
             storyView.startStory()
             
             if let currentWindow = view.window {
                 currentWindow.addSubview(storyView)
             }
+            //            var storyModel = self.stories[indexPath.row]
+            //            print("Passed index \(indexPath.row)")
+            //
+            //            router?.routeToStory(stories: stories, selectedStory: storyModel, index: indexPath.item)
         }
-
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    }
+        
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             guard collectionView == mainView.storiesCollectionView,
                   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCircleCell.reuseIdentifier, for: indexPath) as? StoryCircleCell else {
                 return UICollectionViewCell()
             }
             
-            cell.imageView.image = UIImage(named: "StoryImage")
-            cell.setWatched(watchedStories[indexPath.item])
+            let story =  stories[indexPath.row]
+            cell.imageView.image = story.image
+            cell.setWatched(story.isSeen)
             return cell
         }
-}
-
-
-extension DashboardViewController: ServicesGridViewDelegate {
-    func didSelectService(_ service: ServiceType) {
-        switch service {
-        case .freeSMS:
-            router?.routeToFreeSMS()
-        case .balanceTransfer:
-            router?.routeToBalanceTransfer()
-        case .servicesAbroad:
-            router?.routeToVAS()
-        default:
-            break
+    }
+    
+    
+    extension DashboardViewController: ServicesGridViewDelegate {
+        func didSelectService(_ service: ServiceType) {
+            switch service {
+            case .freeSMS:
+                router?.routeToFreeSMS()
+            case .balanceTransfer:
+                router?.routeToBalanceTransfer()
+            case .servicesAbroad:
+                router?.routeToVAS()
+            default:
+                break
+            }
         }
     }
-}
-
-
+    
+    
