@@ -76,47 +76,50 @@ class StoryView: UIView {
     }
     
     // MARK: - Story Progress Management
-     func startStory() {
-         progressBar.progress = 0.0
-         timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(updateProgressBar), userInfo: nil, repeats: true)
-     }
-     
-      func loadStory(atIndex index: Int) {
-         startStory()
-     }
-     
-      func pauseStory() {
-         timer?.invalidate()
-     }
-     
-      func resumeStory() {
-         let remainingTime = (1.0 - progressBar.progress) * 3.0
-         timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(updateProgressBar), userInfo: nil, repeats: true)
-         timer?.fireDate = Date().addingTimeInterval(TimeInterval(remainingTime))
-     }
-     
-     func showNextStory() {
-         if currentIndex < totalStories - 1 {
-             currentIndex += 1
-             loadStory(atIndex: currentIndex)
-         } else {
-             closeStoryView()
-         }
-     }
-     
-      func showPreviousStory() {
-         if currentIndex > 0 {
-             currentIndex -= 1
-             loadStory(atIndex: currentIndex)
-         }
-     }
+    func loadStory(atIndex index: Int) {
+        startStory()
+        print(index)
+    }
+    
+    
+    func startStory() {
+        progressBar.progress = 0.0
+        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(updateProgressBar), userInfo: nil, repeats: true)
+    }
+    
+    
+    func pauseStory() {
+        timer?.invalidate()
+    }
+    
+    func resumeStory() {
+        let remainingTime = (1.0 - progressBar.progress) * 3.0
+        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(updateProgressBar), userInfo: nil, repeats: true)
+        timer?.fireDate = Date().addingTimeInterval(TimeInterval(remainingTime))
+    }
+    
+    func showNextStory() {
+        if currentIndex < totalStories - 1 {
+            currentIndex += 1
+            loadStory(atIndex: currentIndex)
+        } else {
+            closeStoryView()
+        }
+    }
+    
+    func showPreviousStory() {
+        if currentIndex > 0 {
+            currentIndex -= 1
+            loadStory(atIndex: currentIndex)
+        }
+    }
     
     func closeStoryView() {
         timer?.invalidate()
         removeFromSuperview()
         onStoryClosed?()
     }
-   
+    
     
     // MARK: - User Interaction Handlers
     @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
@@ -139,7 +142,7 @@ class StoryView: UIView {
         }
     }
     
-  
+    
     
     // MARK: - Layout Constraints
     private func setupConstraints() {
