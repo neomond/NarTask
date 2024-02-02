@@ -14,7 +14,7 @@ class SecretNumberView: UIView {
         let label = UILabel()
         label.text = "Gizli zəng üçün"
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = ColorStyle.dataLabel.load()
+        label.textColor = .gray
         return label
     }()
     

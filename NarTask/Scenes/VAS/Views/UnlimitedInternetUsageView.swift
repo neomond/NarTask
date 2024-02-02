@@ -25,7 +25,7 @@ class UnlimitedInternetUsageView: UIView {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = ColorStyle.dataLabel.load()
+        label.textColor = .gray
         label.numberOfLines = 0
         return label
     }()

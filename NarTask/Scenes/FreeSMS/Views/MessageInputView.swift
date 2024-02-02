@@ -37,7 +37,7 @@ class MessageInputView: UIView, UITextViewDelegate {
         let label = UILabel()
         label.text = "Mesaj daxil edin..."
         label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = ColorStyle.dataLabel.load()
+        label.textColor = .black
         return label
     }()
     
@@ -47,7 +47,9 @@ class MessageInputView: UIView, UITextViewDelegate {
         textView.delegate = self
         textView.isScrollEnabled = false
         textView.textContainerInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 12)
+        textView.backgroundColor = .white
         return textView
+        
     }()
     
     private lazy var smsCounterLabel: UILabel = {

@@ -21,7 +21,7 @@ class MissedCallView: UIView {
         let label = UILabel()
         label.text = "Sizə zəng etməyə çalışanları şəbəkəyə qayıtmağınız barədə məlumatlandırın."
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = ColorStyle.dataLabel.load()
+        label.textColor = .gray
         label.numberOfLines = 0
         return label
     }()

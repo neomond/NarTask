@@ -26,7 +26,7 @@ final class FreeSMSView: UIView {
         let label = UILabel()
         label.text = "Mesaj"
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = ColorStyle.dataLabel.load()
+        label.textColor = .black
         return label
     }()
     
