@@ -24,21 +24,15 @@ enum Dashboard
     struct Response
     {
         let stories: StoriesResponse
-//        let data: ServicesCustom
     }
     struct ViewModel
     {
         let stories: [StoryModel]
-//        let data: ServicesCustom
         
     }
   }
-    
-//    struct ServicesCustom {
-//        let title: String
-//        let image: String
-//    }
 }
+
 struct StoryModel {
     let image: UIImage
     var isSeen: Bool = false

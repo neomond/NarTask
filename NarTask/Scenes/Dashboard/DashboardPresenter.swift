@@ -21,7 +21,6 @@ class DashboardPresenter: DashboardPresentationLogic
 {
   weak var viewController: DashboardDisplayLogic?
   
-  // MARK: Do something
   
   func presentStories(response: Dashboard.Something.Response)
   {

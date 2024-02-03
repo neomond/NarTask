@@ -14,30 +14,29 @@ import UIKit
 
 protocol DashboardBusinessLogic
 {
-  func fetchStories(request: Dashboard.Something.Request)
+    func fetchStories(request: Dashboard.Something.Request)
 }
 
 protocol DashboardDataStore
 {
-  //var name: String { get set }
+    //var name: String { get set }
 }
 
 class DashboardInteractor: DashboardBusinessLogic, DashboardDataStore
 {
-  var presenter: DashboardPresentationLogic?
-  var worker: DashboardWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func fetchStories(request: Dashboard.Something.Request)
-  {
-    worker = DashboardWorker()
-      worker?.fetchStories(completion: { stories in
-          let response = Dashboard.Something.Response(stories: stories)
-          self.presenter?.presentStories(response: response)
-      })
+    var presenter: DashboardPresentationLogic?
+    var worker: DashboardWorker?
     
-  
-  }
+    // MARK: Do something
+    
+    func fetchStories(request: Dashboard.Something.Request)
+    {
+        worker = DashboardWorker()
+        worker?.fetchStories(completion: { stories in
+            let response = Dashboard.Something.Response(stories: stories)
+            self.presenter?.presentStories(response: response)
+        })
+        
+        
+    }
 }

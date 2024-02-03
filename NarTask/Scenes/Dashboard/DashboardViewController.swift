@@ -22,8 +22,7 @@ class DashboardViewController: UIViewController, DashboardDisplayLogic {
     var router: (NSObjectProtocol & DashboardRoutingLogic & DashboardDataPassing)?
     var mainView: DashboardView!
     
-    var stories: [StoryModel] = [
-    ]
+    var stories: [StoryModel] = []
     
     override func loadView() {
         super.loadView()
@@ -80,10 +79,6 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
             if let currentWindow = view.window {
                 currentWindow.addSubview(storyView)
             }
-            //            var storyModel = self.stories[indexPath.row]
-            //            print("Passed index \(indexPath.row)")
-            //
-            //            router?.routeToStory(stories: stories, selectedStory: storyModel, index: indexPath.item)
         }
     }
         

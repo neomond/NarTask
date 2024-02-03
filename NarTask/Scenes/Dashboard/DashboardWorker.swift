@@ -15,6 +15,7 @@ import UIKit
 struct StoriesResponse {
     let stories: [StoryResponse]
 }
+
 struct StoryResponse {
     let image: UIImage
     let isSeen: Bool
