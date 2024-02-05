@@ -18,9 +18,7 @@ protocol FreeSMSDisplayLogic: AnyObject {
 
 class FreeSMSViewController: UIViewController, FreeSMSDisplayLogic
 {
-    func displaySomething(viewModel: FreeSMS.Something.ViewModel) {
-        
-    }
+    func displaySomething(viewModel: FreeSMS.Something.ViewModel) { }
     
     var interactor: FreeSMSBusinessLogic?
     var router: (NSObjectProtocol & FreeSMSRoutingLogic & FreeSMSDataPassing)?
