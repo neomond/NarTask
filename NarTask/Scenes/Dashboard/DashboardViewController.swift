@@ -69,10 +69,10 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
         if collectionView == mainView.storiesCollectionView {
             let storyView = StoryView(frame: UIScreen.main.bounds, stories: stories)
             storyView.configure(with: stories[indexPath.row].image, completion: {
-                // ::here -> mark the story as watched when StoryView is closed
+    // ::here -> mark the story as watched when StoryView is closed
                 self.stories[indexPath.row].isSeen = true
                 collectionView.reloadItems(at: [indexPath])
-                // ::here -> reload the cell to update its appearance
+    // ::here -> reload the cell to update its appearance
             })
             storyView.startStory()
             

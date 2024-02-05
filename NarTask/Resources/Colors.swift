@@ -14,8 +14,9 @@ public enum ColorStyle: String, CaseIterable {
     case black =  "BlackColor"
     case bgColor = "BgColor"
     case serviceBgColor = "ServiceBg"
-    case activeBtnBgColor = "ActiveBtnBgColor"
+    case activeBtnBgColor = "activeBtnBgColor"
     case graySecondary = "GraySecondary"
+    case btnActive = "btnActive"
 }
 
 extension ColorStyle {

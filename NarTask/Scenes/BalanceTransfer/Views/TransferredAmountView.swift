@@ -12,7 +12,7 @@ class TransferredAmountView: UIView {
     private var amountButtons: [UIButton] = []
     
     // Colors for the active and inactive states
-    private let activeBackgroundColor = ColorStyle.activeBtnBgColor.load()!
+    private let activeBackgroundColor = ColorStyle.btnActive.load()!
     private let inactiveBackgroundColor: UIColor = .white
     private let activeBorderColor = ColorStyle.mainColor.load()!
     private let inactiveBorderColor = ColorStyle.graySecondary.load()!
